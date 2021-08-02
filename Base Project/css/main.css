@@ -1,0 +1,92 @@
+:root {
+  /* --color-primary: ;
+    --color-primary-rgb: ;
+    --color-primary-light: ;
+    --color-primary-light-rgb: ;
+    --color-primary-dark: ;
+    --color-primary-dark-rgb: ;
+
+    --color-grey-light: #f7f7f7;
+    --color-grey-light-rgb: 247, 247, 247;
+
+    --color-grey-dark: #777;
+    --color-grey-dark-rgb: 119, 119, 119;
+    --color-white: #fff;
+    --color-white-rgb: 255, 255, 255;
+    --color-black: #000;
+    --color-black-rgb: 0, 0, 0;
+
+    // FONT
+
+    --default-font-size: 1.6rem;
+
+  */
+}
+
+html {
+  font-size: 62.5%;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  box-sizing: border-box;
+}
+
+/*body {
+
+}
+
+.heading-primary {
+
+}
+
+.heading-secondary {
+
+}
+
+.heading-tertiary {
+
+}
+
+.paragraph {
+
+}*/
+/*.u-center-text {text-align: center;}
+
+.u-margin-bottom-small {margin-bottom: 1.5rem;}
+.u-margin-bottom-medium {margin-bottom: 4rem;}
+.u-margin-bottom-big {margin-bottom: 8rem;}
+*/
+/*.btn {
+  &:link,
+  &:visited {
+
+  }
+
+  &:hover {
+
+  }
+
+
+  &:active {
+
+  }
+}
+*/
+/*.header {
+
+}
+*/
+/*.header {
+
+}
+*/
+
+/*# sourceMappingURL=main.css.map */
