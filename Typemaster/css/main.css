@@ -80,13 +80,21 @@ body {
   }
 }
 */
-/*.header {
-
+.grid, .grid > *, .grid > * > * {
+  display: grid;
+  width: 100%;
 }
-*/
-/*.header {
 
+.header {
+  grid-template-columns: 0.25fr 1fr 1fr 0.25fr;
+  grid-template-areas: ". logo button .";
 }
-*/
+.header__logo-box {
+  grid-area: logo;
+}
+.header__button-box {
+  grid-area: button;
+  justify-content: end;
+}
 
 /*# sourceMappingURL=main.css.map */
