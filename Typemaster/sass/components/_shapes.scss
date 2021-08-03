@@ -1,0 +1,17 @@
+@use "../abstracts" as *;
+
+[class^="box--rounded"] {
+  display: block;
+  background-color: var(--color-grey-light-2);
+  height: 150px;
+  width: 100px;
+
+}
+
+.box--rounded-left{
+  border-radius: 15px 0 0 15px;
+}
+
+.box--rounded-right{
+  border-radius: 0 15px 15px 0;
+}
