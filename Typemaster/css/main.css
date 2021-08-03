@@ -1,8 +1,8 @@
 :root {
   --color-primary: #f06718;
   --color-primary-rgb: 240,103,24;
-  --color-grey-light-1: #cdd3de;
-  --color-grey-light-rgb-1: 205,211,222;
+  --color-grey-light-1: #9faec9;
+  --color-grey-light-rgb-1: 159, 174, 201;
   --color-grey-light-2: #e7eff2;
   --color-grey-light-rgb-2: 231,239,242;
   --color-grey-dark-1: #152444;
@@ -13,7 +13,7 @@
   --color-white-rgb: 255, 255, 255;
   --color-black: #000;
   --color-black-rgb: 0, 0, 0;
-  --default-font-size: 1.1rem;
+  --default-font-size: 1.4rem;
   --screen-sm-min: 576px;
   --screen-md-min: 768px;
   --screen-lg-min: 992px;
@@ -57,10 +57,13 @@ body {
 
 [class^=heading] {
   color: var(--color-grey-dark-1);
+  text-transform: uppercase;
+  letter-spacing: -1px;
 }
 
 .btn {
   font-weight: 700;
+  text-transform: uppercase;
 }
 
 /*.u-center-text {text-align: center;}
@@ -82,7 +85,7 @@ body {
 }
 
 .btn {
-  padding: 1rem;
+  padding: 1.5rem;
   border: none;
   transition: 0.3s;
 }
@@ -113,7 +116,7 @@ body {
 [class^=box--rounded] {
   display: block;
   background-color: var(--color-grey-light-2);
-  height: 20rem;
+  height: 28rem;
   width: 100%;
 }
 

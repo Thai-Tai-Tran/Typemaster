@@ -8,6 +8,8 @@ body {
 
 [class^="heading"] {
   color: var(--color-grey-dark-1);
+  text-transform:uppercase;
+  letter-spacing: -1px;
 }
 
 .heading-primary {
@@ -28,4 +30,5 @@ body {
 
 .btn {
   font-weight: 700;
+  text-transform:uppercase;
 }
