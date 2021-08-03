@@ -2,8 +2,8 @@
   // COLORS
   // the rgb versions are necessary for rgba color values
   //https://www.rapidtables.com/convert/color/hex-to-rgb.html - website to convert hex to rgb
-    --color-primary: #e7eff2;
-    --color-primary-rgb: 231,239,242;
+    --color-primary: #f06718;
+    --color-primary-rgb: 240,103,24;
     //--color-primary-light: ;
     //--color-primary-light-rgb: ;
     //--color-primary-dark: ;
@@ -18,15 +18,28 @@
     --color-grey-dark-2: #5b657f;
     --color-grey-dark-rgb-2: 91, 101, 127;
 
-    //--color-white: #fff;
-    //--color-white-rgb: 255, 255, 255;
+    --color-white: #fff;
+    --color-white-rgb: 255, 255, 255;
     //--color-black: #000;
     //--color-black-rgb: 0, 0, 0;
 
   // FONT
 
-    //--default-font-size: 1.6rem;
+    --default-font-size: 1.1rem;
 
+  // BREAKPOINTS
+
+    // Small tablets and large smartphones (landscape view)
+    --screen-sm-min: 576px;
+
+    // Small tablets (portrait view)
+    --screen-md-min: 768px;
+
+    // Tablets and small desktops
+    --screen-lg-min: 992px;
+
+    // Large tablets and desktops
+    --screen-xl-min: 1200px;
 
 }
 

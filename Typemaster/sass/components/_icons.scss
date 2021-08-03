@@ -1,0 +1,11 @@
+@use "../abstracts" as *;
+
+.icon-box__bg {
+  background-color: var(--color-primary);
+  padding: 1rem;
+}
+.iconify {
+  width: 2rem;
+  height: 2rem;
+
+}

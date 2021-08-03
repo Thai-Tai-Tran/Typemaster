@@ -1,20 +1,135 @@
 @use "../abstracts" as *;
+/////////////////
+// GRID
 
-.grid, .grid>*, .grid>*>* {
+.grid, .grid>*{
+  padding: 10px 0;
+  gap:2rem;
   display:grid;
   width:100%;
 
-}
+  &>*>*{
+    display:flex;
+    align-items: flex-start;
+    flex-direction: column;
 
+  }
+}
+/////////////////
+// Section Header
 .header {
   grid-template-columns: 0.25fr 1fr 1fr 0.25fr;
   grid-template-areas: ". logo button .";
 
   &__logo-box{
     grid-area: logo;
+
+    & img{
+      width:3rem;
+    }
   }
   &__button-box {
     grid-area: button;
-    justify-content: end;
+    align-items: flex-end;
   }
 }
+
+/////////////////
+// Section About
+
+.section-about {
+  grid-template-columns: 0.25fr 1fr 1fr 0.25fr;
+  grid-template-areas: ". cta img shape";
+
+
+  &__cta{
+    grid-area: cta;
+    align-items: start;
+
+    &__area{
+      flex-direction: initial;
+      align-items: center;
+    }
+  }
+
+  &__img-box {
+    grid-area: img;
+
+  }
+
+  &__shape-box {
+    grid-area: shape;
+
+  }
+}
+
+/////////////////
+// Section Qualities
+
+.section-qualities {
+  grid-template-columns: 0.25fr 0.5fr 1fr 0.5fr 0.25fr;
+  grid-template-areas: "shape img-1 img-2 text .";
+
+  &__shape-box {
+    grid-area: shape;
+    justify-content: flex-end;
+
+  }
+
+  &__img-box-1 {
+    grid-area: img-1;
+
+  }
+
+  &__img-box-2 {
+    grid-area: img-2;
+
+  }
+
+  & img {
+    height:100%;
+  }
+
+  &__text-box {
+    grid-area: text;
+
+  }
+}
+
+/////////////////
+// Section USPs
+
+.section-usps{
+  grid-template-columns: 0.25fr 0.5fr 0.5fr 0.5fr 0.5fr 0.25fr;
+  grid-template-areas: ". icb-1 icb-2 icb-3 icb-4 .";
+
+}
+.icon-box{
+  &__bg{
+    background-color: var(--color-primary);
+    padding:1rem;
+
+  }
+  &-1{
+    grid-area: icb-1;
+  }
+  &-2{
+    grid-area: icb-2;
+  }
+  &-3{
+    grid-area: icb-3;
+  }
+  &-4{
+    grid-area: icb-4;
+  }
+}
+
+
+
+/////////////////
+// Section Footer
+.footer_copy-right {
+  flex-direction: initial;
+  justify-content: center;
+}
+

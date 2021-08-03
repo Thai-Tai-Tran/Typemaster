@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/main.css">
+        <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -18,12 +19,12 @@
                 <img src = "img/logo.png" alt = "Logo" class = "top-bar__logo">
             </div>
             <div class="grid__col header__button-box">
-                <button class="btn btn--grey"> Pre-Order Now</button>
+                <button class="btn btn--grey rounded-sm "> Pre-Order Now</button>
             </div>
         </header>
 
-        <div class="grid__row section-about">
-            <div class="grid__col-1">
+        <div class="grid__row section-about gap-sm-r">
+            <div class="grid__col section-about__cta">
                 <h1 class="heading-primary">
                     Typemaster <br>
                     Keyboard
@@ -31,71 +32,77 @@
                 <p class="paragraph">
                     Improve your productivity and gaming without breaking the bank. Upgrade to a high quality mechanical typing experience.
                 </p>
-                <div class="cta-box">
-                    <button class="btn btn-orange">
+                <div class="section-about__cta__area ">
+                    <button class="btn btn--orange rounded-sm">
                         Pre-Order Now
                     </button>
-                    <div class="cta-box__info">
+                    <div class="section-about__cta__area__info">
                         Release On 5/27
                     </div>
                 </div>
             </div>
-            <div class="grid__col-2">
+            <div class="grid__col section-about__img-box">
                 <img src = "img/keyboard_main.png" alt = "Keyboard Main" class = "img rounded">
             </div>
-            <div class="grid__col-3">
+            <div class="grid__col section-about__shape-box">
                 <div class="box--rounded-left"></div>
             </div>
         </div>
 
         <div class="grid__row section-qualities">
-            <div class="grid__col-1">
+            <div class="grid__col section-qualities__shape-box">
                 <div class="box--rounded-right"></div>
             </div>
-            <div class="grid__col-2">
+            <div class="grid__col section-qualities__img-box-1">
                 <img src = "img/keyboard_side-1.png" alt = "Keyboard Side 1" class = "img rounded">
             </div>
-            <div class="grid__col-3"></div>
-                <img src = "img/keyboard_side-2.png" alt = "Keyboard Side 1" class = "img rounded">
-            <div class="grid__col-4">
+            <div class="grid__col section-qualities__img-box-2 gap-sm-r">
+                <img src = "img/keyboard_side-2.png" alt = "Keyboard Side 2" class = "img rounded">
+            </div>
+
+            <div class="grid__col section-qualities__text-box">
                 <h2 class="heading-secondary">
                     Mechanical <br />
                     Wireless <br />
                     Keyboard
                 </h2>
+                <p class="paragraph">
+                    The Typemaser keyboard boasts top-notch build and practical design. It offers a wide variety of switches and keycaps, along with reliable wireless connectivity.
+                </p>
             </div>
         </div>
 
         <div class="grid__row section-usps">
-            <div class="grid__col icon-box">
-                <svg class="icon-box__icon">
-                    <use xlink:href="img/sprite.svg#icon-display"></use>
-                </svg>
+            <div class="grid__col icon-box-1">
+                <div class="icon-box__bg rounded">
+                    <span class="iconify" data-icon="bi:display-fill" data-inline="false" style="color: #fff;"></span>
+                </div>
+
                 <h3 class="heading-tertiary">Highly <br />Comptabible</h3>
                 <p class="paragraph"> Easy to use and works well with all major computer brands, gaming consoles and mobile devices. Plug & play, no installation or driver needed</p>
             </div>
-            <div class="grid__col icon-box">
-                <svg class="icon-box__icon">
-                    <use xlink:href="img/sprite.svg#icon-bluetooth"></use>
-                </svg>
+            <div class="grid__col icon-box-2">
+                <div class="icon-box__bg rounded">
+                    <span class="iconify" data-icon="bx:bx-bluetooth" data-inline="false" style="color: #fff;">
+                </div>
                 <h3 class="heading-tertiary">Wireless<br /> With Bluetooth</h3>
                 <p class="paragraph">
                     Powerful 2.4G RF technology allows you to connect the cordless keyboard from up to 30ft away. Simply plug the unifying receiver into your computer.
                 </p>
             </div>
-            <div class="grid__col icon-box">
-                <svg class="icon-box__icon">
-                    <use xlink:href="img/sprite.svg#icon-battery-full"></use>
-                </svg>
+            <div class="grid__col icon-box-3 ">
+                <div class="icon-box__bg rounded">
+                    <span class="iconify" data-icon="typcn:battery-full" data-inline="false" style="color: #fff;"></span>
+                </div>
                 <h3 class="heading-tertiary">High Capacity <br />Battery</h3>
                 <p class="paragraph">
                     Equipped with a long-lasting-built-in battery, you'll never have to spend a dime on replaceable ones. Enjoy 50 hours of usage time between charges.
                 </p>
             </div>
-            <div class="grid__col icon-box">
-                <svg class="icon-box__icon">
-                    <use xlink:href="img/sprite.svg#icon-light-bulb"></use>
-                </svg>
+            <div class="grid__col icon-box-4">
+                <div class="icon-box__bg rounded">
+                    <span class="iconify" data-icon="heroicons-solid:light-bulb" data-inline="false" style="color: #fff;"></span>
+                </div>
                 <h3 class="heading-tertiary"> RGB Backlit <br />Modes</h3>
                 <p class="paragraph">
                     Choose from 4 backlight brightness levels and adjustable breathing speed. Each key glows intensely in the dark and helps ypu type in low light conditions.
