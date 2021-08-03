@@ -11,6 +11,8 @@
   --color-grey-dark-rgb-2: 91, 101, 127;
   --color-white: #fff;
   --color-white-rgb: 255, 255, 255;
+  --color-black: #000;
+  --color-black-rgb: 0, 0, 0;
   --default-font-size: 1.1rem;
   --screen-sm-min: 576px;
   --screen-md-min: 768px;
@@ -82,7 +84,21 @@ body {
 .btn {
   padding: 1rem;
   border: none;
+  transition: 0.3s;
 }
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1rem 2rem rgba(var(--color-black), 0.2);
+}
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 0.5rem 1rem rgba(var(--color-black), 0.2);
+}
+
 .btn--orange {
   background-color: var(--color-primary);
   color: var(--color-white);
