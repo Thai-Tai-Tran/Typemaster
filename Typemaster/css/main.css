@@ -66,6 +66,10 @@ body {
   text-transform: uppercase;
 }
 
+#popup-su__button-close {
+  font-size: 3.5rem;
+}
+
 /*.u-center-text {text-align: center;}
 
 .u-margin-bottom-small {margin-bottom: 1.5rem;}
@@ -113,6 +117,14 @@ body {
   color: var(--color-grey-dark-2);
 }
 
+#popup-su__button-close {
+  cursor: pointer;
+  color: var(--color-grey-dark-1);
+  background: none;
+  border: none;
+  outline: none;
+}
+
 [class^=box--rounded] {
   display: block;
   background-color: var(--color-grey-light-2);
@@ -128,6 +140,19 @@ body {
   border-radius: 0 15px 15px 0;
 }
 
+.overlay {
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+  transition: 200ms ease-in-out;
+  background-color: rgba(var(--color-black-rgb), 0.5);
+  pointer-events: none;
+}
+.overlay--active {
+  opacity: 1;
+  pointer-events: all;
+}
+
 .icon-box__bg {
   background-color: var(--color-primary);
   padding: 1rem;
@@ -136,6 +161,173 @@ body {
 .iconify {
   width: 2rem;
   height: 2rem;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  z-index: 1000;
+  padding: 10rem 15% 10rem 5%;
+  background-color: var(--color-white);
+  width: 70rem;
+}
+.popup--active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+#tel-number-box, #password-box, #opt-in-box, #submit-box {
+  grid-template-columns: 3fr 12fr;
+}
+
+#sign-up-form__header, #name-box {
+  grid-template-columns: 3fr 6fr 6fr;
+}
+
+#birthday-box, #gender-box {
+  grid-template-columns: 3fr 4fr 4fr 4fr;
+}
+
+#sign-up-form, #sign-up-form > * {
+  display: grid;
+  gap: 2rem;
+}
+
+#sign-up-form {
+  width: 100%;
+  height: 80%;
+}
+
+#sign-up-form__header {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  grid-template-areas: ". form-heading close-btn";
+}
+#sign-up-form__header > * {
+  margin: 0;
+}
+#sign-up-form__header__heading {
+  grid-area: form-heading;
+}
+
+#popup-su__button-close {
+  grid-area: close-btn;
+  justify-self: end;
+}
+
+#name-box {
+  grid-template-areas: " name-feedback firstn lastn";
+}
+
+#name-feedback {
+  grid-area: name-feedback;
+}
+
+#first-name {
+  grid-area: firstn;
+}
+
+#last-name {
+  grid-area: lastn;
+}
+
+#tel-number-box {
+  grid-template-areas: "tel-feedback telnr";
+}
+
+#tel-number-feedback {
+  grid-area: tel-feedback;
+}
+
+#tel-number {
+  grid-area: telnr;
+}
+
+#password-box {
+  grid-template-areas: "pswd-feedback pswd";
+}
+
+#password-feedback {
+  grid-area: pswd-feedback;
+}
+
+#password {
+  grid-area: pswd;
+}
+
+#birthday-box {
+  grid-template-areas: "bday-feedback bday-label bday-label bday-label" "bday-feedback day month year";
+}
+
+#birthday-feedback {
+  grid-area: bday-feedback;
+}
+
+#birthday-box__label {
+  grid-area: bday-label;
+}
+
+#day {
+  grid-area: day;
+}
+
+#month {
+  grid-area: month;
+}
+
+#year {
+  grid-area: year;
+}
+
+#gender-box {
+  grid-template-areas: "gender-feedback gender-label gender-label gender-label" "gender-feedback f m d";
+}
+
+#gender-feedback {
+  grid-area: bday-feedback;
+}
+
+#gender-box__label {
+  grid-area: gender-label;
+}
+
+#female-box {
+  grid-area: f;
+}
+
+#male-box {
+  grid-area: m;
+}
+
+#diverse-box {
+  grid-area: d;
+}
+
+#opt-in-box {
+  grid-template-areas: "opt-in-feedback opt-in-text" "opt-in-feedback opt-in-check";
+}
+
+#opt-in-feedback {
+  grid-area: opt-in-feedback;
+}
+
+#opt-in-text {
+  grid-area: opt-in-text;
+}
+
+#opt-in-box-check {
+  grid-area: opt-in-check;
+}
+
+#submit-box {
+  grid-template-areas: ". submit-btn";
+}
+
+#submit {
+  grid-area: submit-btn;
 }
 
 .grid, .grid > * {
@@ -161,8 +353,10 @@ body {
   width: 3rem;
 }
 .header__button-box {
+  flex-direction: row;
   grid-area: button;
-  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 1.2rem;
 }
 
 .section-about {

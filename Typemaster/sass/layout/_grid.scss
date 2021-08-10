@@ -29,8 +29,11 @@
     }
   }
   &__button-box {
+    flex-direction: row;
     grid-area: button;
-    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 1.2rem;
+
   }
 }
 

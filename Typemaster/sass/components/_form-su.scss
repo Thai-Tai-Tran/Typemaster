@@ -1,0 +1,184 @@
+@use "../abstracts" as *;
+// 2 col
+#tel-number-box, #password-box, #opt-in-box, #submit-box {
+  grid-template-columns: 3fr 12fr;
+}
+
+// 3 col
+#sign-up-form__header, #name-box {
+  grid-template-columns: 3fr 6fr 6fr;
+}
+
+// 4 col
+#birthday-box, #gender-box {
+  grid-template-columns: 3fr 4fr 4fr 4fr;
+}
+
+// Grid
+#sign-up-form, #sign-up-form>* {
+  display: grid;
+  gap: 2rem;
+  }
+
+#sign-up-form {
+  width: 100%;
+  height: 80%;
+}
+
+// ROW 1 HEADER
+#sign-up-form__header {
+
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  grid-template-areas: ". form-heading close-btn";
+
+
+  &>* {
+    margin: 0;
+  }
+
+  &__heading{
+    grid-area: form-heading;
+  }
+}
+
+#popup-su__button-close{
+  grid-area: close-btn;
+  justify-self: end;
+}
+
+// ROW 2 NAME
+
+#name-box {
+  grid-template-areas: " name-feedback firstn lastn" ;
+}
+
+#name-feedback{
+  grid-area: name-feedback;
+
+}
+
+#first-name{
+  grid-area: firstn;
+}
+
+#last-name{
+  grid-area: lastn;
+}
+
+//ROW 3 TEL NUMBER
+
+#tel-number-box {
+  grid-template-areas: "tel-feedback telnr" ;
+}
+
+#tel-number-feedback{
+  grid-area: tel-feedback;
+
+}
+
+#tel-number{
+  grid-area: telnr;
+}
+
+//ROW 4 PASSWORD
+
+#password-box {
+  grid-template-areas: "pswd-feedback pswd" ;
+}
+
+#password-feedback{
+  grid-area: pswd-feedback;
+}
+
+#password{
+  grid-area: pswd;
+}
+
+//ROW 5 BIRTHDAY
+
+#birthday-box {
+  grid-template-areas:
+          "bday-feedback bday-label bday-label bday-label"
+          "bday-feedback day month year";
+}
+
+#birthday-feedback {
+  grid-area: bday-feedback;
+}
+
+#birthday-box__label {
+  grid-area: bday-label;
+}
+
+#day {
+  grid-area: day;
+}
+
+#month {
+  grid-area: month;
+}
+
+#year {
+  grid-area: year;
+}
+
+//ROW 6 Gender
+
+#gender-box {
+  grid-template-areas:
+          "gender-feedback gender-label gender-label gender-label"
+          "gender-feedback f m d";
+}
+
+#gender-feedback {
+  grid-area: bday-feedback;
+}
+
+#gender-box__label {
+  grid-area: gender-label;
+}
+
+#female-box {
+  grid-area: f;
+}
+
+#male-box {
+  grid-area: m;
+}
+
+#diverse-box {
+  grid-area: d;
+}
+
+//ROW 7 OPT IN
+
+#opt-in-box {
+  grid-template-areas:
+          "opt-in-feedback opt-in-text"
+          "opt-in-feedback opt-in-check";
+}
+
+#opt-in-feedback {
+  grid-area: opt-in-feedback;
+}
+
+#opt-in-text {
+  grid-area: opt-in-text;
+}
+
+#opt-in-box-check {
+  grid-area: opt-in-check;
+}
+
+// ROW 8 SUBMIT
+
+#submit-box {
+  grid-template-areas: ". submit-btn";
+}
+
+#submit {
+  grid-area: submit-btn;
+}
+
