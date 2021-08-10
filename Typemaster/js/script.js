@@ -35,130 +35,163 @@
 
 // Sign Up Form with Fast Feedback
 
+    // Date Selection
 
-//     const form = document.getElementById("sign-up-form");
-//     enableFastFeedback(form);
-//
-//     form.submit(function(event){
-//         const firstName = getElementById("first-name").val();
-//         const password = $("#password").val();
-//         const message = $("#message").val();
-//         const checked = $("#checkbox").is(":checked");
-//
-//         validateNameField(name, event)
-//         validatePasswordField(password, event)
-//         validateMessageField(message, event)
-//         validateCheckboxField(checked, event)
-//
-//     });
-//
-//
-// // fastFeedback
-//
-//     function enableFastFeedback(formElement){
-//         const nameInput = formElement.find("#first-name");
-//         const passwordInput = formElement.find("#password");
-//         const messageInput = formElement.find("#message");
-//         const checkboxInput = formElement.find("#checkbox");
-//
-//         nameInput.blur(function(event){
-//             const name = $(this).val();
-//             validateNameField(name,event)
-//
-//             if (!isValidName(name)) {
-//                 $(this).css({"box-shadow": "0 0 4px #811", "border": "1px solid #600"});
-//             } else{
-//                 $(this).css({"box-shadow": "0 0 4px #188", "border": "1px solid #060"});
-//             }
-//         });
-//
-//         passwordInput.blur(function(event){
-//             const password = $(this).val();
-//             validatePasswordField(password, event)
-//
-//             if (!isValidPassword(password)) {
-//                 $(this).css({"box-shadow": "0 0 4px #811", "border": "1px solid #600"});
-//             } else{
-//                 $(this).css({"box-shadow": "0 0 4px #188", "border": "1px solid #060"});
-//             }
-//         });
-//
-//         messageInput.blur(function(event){
-//             const message = $(this).val();
-//             validateMessageField(message, event)
-//
-//             if (!isValidMessage(message)) {
-//                 $(this).css({"box-shadow": "0 0 4px #811", "border": "1px solid #600"});
-//             } else{
-//                 $(this).css({"box-shadow": "0 0 4px #188", "border": "1px solid #060"});
-//             }
-//         });
-//
-//         checkboxInput.change(function(event){
-//             const isChecked = $(this).is(":checked");
-//             validateCheckboxField(isChecked, event)
-//
-//             if (!isChecked) {
-//                 $(this).add("label[for='checkbox']").css({"box-shadow": "0 0 4px #811", "border": "1px solid #600"});
-//             } else{
-//                 $(this).add("label[for='checkbox']").css({"box-shadow": "0 0 4px #188", "border": "1px solid #060"});
-//             }
-//         });
-//
-//     }
-//
-//  // isValid Functions
-//
-//     function isValidName(name){
-//         return name.length >= 2;
-//     }
-//
-//     function isValidPassword(password){
-//         return password.length >= 7 && /.*[0-9].*/.test(password);
-//         // test for pw length and if it contains a number
-//     }
-//
-//     function isValidMessage(message){
-//         return message.trim() != "";
-//     }
-//
-//  //validate functions
-//
-//     function validateNameField(name, event){
-//
-//         if(!isValidName(name)){
-//             $("#name-feedback").text("Please enter at least two characters")
-//             event.preventDefault();
-//         } else {
-//             $("#name-feedback").text("");
-//         }
-//     }
-//
-//
-//     function validatePasswordField(password, event){
-//         if(!isValidPassword(password)){
-//             $("#password-feedback").text("Please enter a password with at least 8 characters.")
-//             event.preventDefault();
-//         } else {
-//             $("#password-feedback").text("");
-//         }
-//     }
-//
-//     function validateMessageField(message, event) {
-//         if (!isValidMessage(message)) {
-//             $("#message-feedback").text("Please enter a message.")
-//             event.preventDefault()
-//         } else {
-//             $("#message-feedback").text("");
-//         }
-//     }
-//
-//     function validateCheckboxField(checked, event){
-//         if (!checked){
-//             $("#checkbox-feedback").text("Please agree to this.")
-//             event.preventDefault()
-//         } else {
-//             $("#checkbox-feedback").text("");
-//         }
-//     }
+    // Setup
+
+        const form = document.getElementById("sign-up-form");
+
+
+        const firstName = document.getElementById("first-name");
+        const lastName = document.getElementById("last-name");
+        const telNumber = document.getElementById("tel-number");
+        const password = document.getElementById("password");
+        // const day = formElement.find("#day");
+        // const month = formElement.find("#month");
+        // const year = formElement.find("#year");
+        const checkbox = document.getElementById("checkbox");
+
+
+
+         form.addEventListener('submit', formValidateFunction);
+         enableFastFeedback(form);
+
+        function formValidateFunction(event){
+
+            validateFirstNameField(firstName.value, event)
+            validateLastNameField(lastName.value, event)
+            validateTelNumberField(telNumber.value, event)
+            validatePasswordField(password.value, event)
+
+            validateCheckboxField(checkbox.checked, event)
+
+        }
+
+    // fastFeedback
+
+        function enableFastFeedback(){
+
+            firstName.addEventListener("blur",function(event){
+                const firstNameValue = this.value;
+                validateFirstNameField(firstNameValue,event)
+
+                if (!isValidName(firstNameValue)) {
+                    this.setAttribute("style","box-shadow:0 0 4px #811; border: 1px solid #600;");
+                } else{
+                    this.setAttribute("style","box-shadow: 0 0 4px #188; border: 1px solid #060;");
+                }
+            });
+
+          lastName.addEventListener("blur",function(event){
+                const lastNameValue = this.value;
+                validateLastNameField(lastNameValue,event)
+
+                if (!isValidName(lastNameValue)) {
+                    this.setAttribute("style","box-shadow:0 0 4px #811; border: 1px solid #600;");
+                } else{
+                    this.setAttribute("style","box-shadow: 0 0 4px #188; border: 1px solid #060;");
+                }
+            });
+
+            telNumber.addEventListener("blur",function(event){
+                const telNumberValue = this.value;
+                validateTelNumberField(telNumberValue, event)
+
+                if (!isValidNumber(telNumberValue)) {
+                    this.setAttribute("style","box-shadow:0 0 4px #811; border: 1px solid #600;");
+                } else{
+                    this.setAttribute("style","box-shadow: 0 0 4px #188; border: 1px solid #060;");
+                }
+            });
+
+            password.addEventListener("blur",function(event){
+                const passwordValue = this.value;
+                validatePasswordField(passwordValue, event)
+
+                if (!isValidPassword(passwordValue)) {
+                    this.setAttribute("style","box-shadow:0 0 4px #811; border: 1px solid #600;");
+                } else{
+                    this.setAttribute("style","box-shadow: 0 0 4px #188; border: 1px solid #060;");
+                }
+            });
+
+            checkbox.addEventListener("change",function(event){
+                const checkBoxValue = this.checked
+                validateCheckboxField(checkBoxValue,event)
+
+                if (checkBoxValue == false) {
+                    this.setAttribute("style","box-shadow:0 0 4px #811; border: 1px solid #600;");
+                } else{
+                    this.setAttribute("style","box-shadow: 0 0 4px #188; border: 1px solid #060;");
+                }
+            });
+
+        }
+
+     // isValid Functions
+
+        function isValidName(name){
+            return name.length >= 2;
+        }
+
+        function isValidNumber(telNumberValue){
+            telNumberValue.replace(/[^\d]/g, '');
+            if(telNumberValue.length > 6 && telNumberValue.length < 11) {  return true;  }
+        }
+
+        function isValidPassword(passwordValue){
+            return passwordValue.length >= 7 && /.*[0-9].*/.test(passwordValue);
+            // test for pw length and if it contains a number
+        }
+
+
+     //validate functions
+
+        function validateFirstNameField(firstNameValue, event){
+
+            if(!isValidName(firstNameValue)){
+                document.getElementById("name-feedback").innerText = "Please enter at least two characters"
+                event.preventDefault();
+            } else {
+                document.getElementById("name-feedback").innerText= "";
+            }
+        }
+
+        function validateLastNameField(lastNameValue, event){
+
+            if(!isValidName(lastNameValue)){
+                document.getElementById("name-feedback").innerText = "Please enter at least two characters"
+                event.preventDefault();
+            } else {
+                document.getElementById("name-feedback").innerText= "";
+            }
+        }
+
+        function validateTelNumberField(telNumberValue, event) {
+            if (!isValidNumber(telNumberValue)) {
+                document.getElementById("tel-number-feedback").innerText = "Please enter a valid Telephone Number."
+                event.preventDefault()
+            } else {
+                document.getElementById("tel-number-feedback").innerText = "";
+            }
+        }
+
+
+        function validatePasswordField(passwordValue, event){
+            if(!isValidPassword(passwordValue)){
+                document.getElementById("password-feedback").innerText = "Please enter a password with at least 8 characters.";
+                event.preventDefault();
+            } else {
+                document.getElementById("password-feedback").innerText = "";
+            }
+        }
+
+        function validateCheckboxField(checkBoxValue,event){
+            if (checkBoxValue == false){
+                document.getElementById("opt-in-feedback").innerText = "Please agree to this."
+                event.preventDefault()
+            } else {
+                document.getElementById("opt-in-feedback").innerText = "";
+            }
+        }
 

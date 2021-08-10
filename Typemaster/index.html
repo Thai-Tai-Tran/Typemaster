@@ -121,45 +121,44 @@
         <div class="popup rounded popup--active" id="popup-su">
 
                  <form id="sign-up-form" action="">
-
-                     <div id="sign-up-form__header">
                          <h2 id="sign-up-form__header__heading" class="heading-secondary">Sign Up</h2>
                          <button id="popup-su__button-close">&times;</button>
-                     </div>
 
-                     <div id="name-box">
                          <span id="name-feedback"></span>
-                         <input id="first-name" type="text" value="" placeholder="First Name">
-                         <input id="last-name" type="text" value="" placeholder="Last Name">
-                     </div>
+                         <input id="first-name" type="text" placeholder="First Name">
+                         <input id="last-name" type="text" placeholder="Last Name">
 
-                    <div id="tel-number-box">
                         <span id="tel-number-feedback"></span>
-                        <input id="tel-number" type="tel" value="" placeholder="Telephone Number">
-                    </div>
+                        <input id="tel-number" type="tel" placeholder="Telephone Number">
 
-
-                    <div id="password-box">
                         <span id="password-feedback"></span>
-                        <input id="password" type="password" value="" placeholder="Password">
-                    </div>
+                        <input id="password" type="password" placeholder="Password">
 
-                     <div id="birthday-box">
                          <span id="birthday-feedback"></span>
                          <div id="birthday-box__label">
                              Birth date
                          </div>
                          <select name="birthday-day" id="day"></select>
-                         <select name="birthday-month" id="month"></select>
+                         <select name="birthday-month" id="month">
+                             <option value="0">January
+                             <option value="1">February
+                             <option value="2">March
+                             <option value="3">April
+                             <option value="4">May
+                             <option value="5">June
+                             <option value="6">July
+                             <option value="7">August
+                             <option value="8">September
+                             <option value="9">October
+                             <option value="10">November
+                             <option value="11">December
+                         </select>
                          <select name="birthday-year" id="year"></select>
-                     </div>
 
-                     <div id="gender-box">
                          <span id="gender-feedback"></span>
                          <div id="gender-box__label">
                              Gender
                          </div>
-
                          <div id= "female-box" class="gender-box__radio-buttons__box">
                              <input type="radio" name="sex" id="female__radio"></input>
                              <label for="female__radio" class="label-gender">Female</label>
@@ -173,9 +172,6 @@
                              <label for="diverse__radio" class="label-gender">Diverse</label>
                          </div>
 
-                     </div>
-
-                     <div id="opt-in-box">
                          <span id="opt-in-feedback"></span>
                          <div id="opt-in-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam commodi consequuntur cum eius eligendi nam nihil obcaecati, sapiente unde voluptatum?</div>
                          <div id="opt-in-box-check">
@@ -183,15 +179,10 @@
                              <label for="checkbox">I accept</label>
                          </div>
 
-                     </div>
-
-                     <div id="submit-box">
                          <input id="submit" class="btn btn--grey"type="submit" value="Register">
-                     </div>
-
                  </form>
-             </div>
 
+             </div>
          </div>
 
         <div id="overlay" class="overlay overlay--active"></div>

@@ -37,3 +37,10 @@ body {
   font-size: 3.5rem;
 
 }
+
+#sign-up-form input::placeholder{
+  color: var(--color-grey-light-1);
+}
+[id$="feedback"] {
+  color:red;
+}
