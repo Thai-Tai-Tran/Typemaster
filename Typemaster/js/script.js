@@ -73,7 +73,7 @@
     // Leap year Function
 
         function removeOptions(selectElement) {
-            let i, L = selectElement.options.length - 1;
+            let i, L = selectElement.options.length -1;
             for(i = L; i >= 0; i--) {
                 selectElement.remove(i);
             }
