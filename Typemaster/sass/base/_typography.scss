@@ -42,7 +42,7 @@ body {
   color: var(--color-grey-light-1);
 }
 [id$="feedback"] {
-  color:red;
+  color: var(--color-red);
 }
 
 select:invalid {

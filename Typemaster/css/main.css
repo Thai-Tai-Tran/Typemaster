@@ -2,17 +2,23 @@
   --color-primary: #f06718;
   --color-primary-rgb: 240,103,24;
   --color-grey-light-1: #9faec9;
-  --color-grey-light-rgb-1: 159, 174, 201;
+  --color-grey-light-1-rgb: 159, 174, 201;
   --color-grey-light-2: #e7eff2;
-  --color-grey-light-rgb-2: 231,239,242;
+  --color-grey-light-2-rgb: 231,239,242;
   --color-grey-dark-1: #152444;
-  --color-grey-dark-rgb-1: 21,36,68;
+  --color-grey-dark-1-rgb: 21,36,68;
   --color-grey-dark-2: #5b657f;
-  --color-grey-dark-rgb-2: 91, 101, 127;
+  --color-grey-dark-2-rgb: 91, 101, 127;
   --color-white: #fff;
   --color-white-rgb: 255, 255, 255;
   --color-black: #000;
   --color-black-rgb: 0, 0, 0;
+  --color-red: #600;
+  --color-red-rgb: 102,0,0;
+  --color-green: #060;
+  --color-green-rgb: 0,102,0;
+  --box-shadow-red: 0 0 4px #811;
+  --box-shadow-green: 0 0 4px #188;
   --default-font-size: 1.4rem;
   --screen-sm-min: 576px;
   --screen-md-min: 768px;
@@ -75,7 +81,7 @@ body {
 }
 
 [id$=feedback] {
-  color: red;
+  color: var(--color-red);
 }
 
 select:invalid {

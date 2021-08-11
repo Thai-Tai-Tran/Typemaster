@@ -176,9 +176,9 @@
                 validateFirstNameField(firstNameValue,event)
 
                 if (!isValidName(firstNameValue)) {
-                    this.setAttribute("style","box-shadow:0 0 4px #811; border: 1px solid #600;");
+                    this.setAttribute("style","box-shadow:var(--box-shadow-red); border: 1px solid var(--color-red);");
                 } else{
-                    this.setAttribute("style","box-shadow: 0 0 4px #188; border: 1px solid #060;");
+                    this.setAttribute("style","box-shadow: var(--box-shadow-green); border: 1px solid var(--color-green);");
                 }
             });
 
@@ -187,9 +187,9 @@
                 validateLastNameField(lastNameValue,event)
 
                 if (!isValidName(lastNameValue)) {
-                    this.setAttribute("style","box-shadow:0 0 4px #811; border: 1px solid #600;");
+                    this.setAttribute("style","box-shadow: var(--box-shadow-red); border: 1px solid var(--color-red);");
                 } else{
-                    this.setAttribute("style","box-shadow: 0 0 4px #188; border: 1px solid #060;");
+                    this.setAttribute("style","box-shadow: var(--box-shadow-green); border: 1px solid var(--color-green);");
                 }
             });
 
@@ -198,9 +198,9 @@
                 validateTelNumberField(telNumberValue, event)
 
                 if (!isValidNumber(telNumberValue)) {
-                    this.setAttribute("style","box-shadow:0 0 4px #811; border: 1px solid #600;");
+                    this.setAttribute("style","box-shadow:var(--box-shadow-red); border: 1px solid var(--color-red);");
                 } else{
-                    this.setAttribute("style","box-shadow: 0 0 4px #188; border: 1px solid #060;");
+                    this.setAttribute("style","box-shadow: var(--box-shadow-green); border: 1px solid var(--color-green);");
                 }
             });
 
@@ -209,9 +209,9 @@
                 validatePasswordField(passwordValue, event)
 
                 if (!isValidPassword(passwordValue)) {
-                    this.setAttribute("style","box-shadow:0 0 4px #811; border: 1px solid #600;");
+                    this.setAttribute("style","box-shadow:var(--box-shadow-red); border: 1px solid var(--color-red);");
                 } else{
-                    this.setAttribute("style","box-shadow: 0 0 4px #188; border: 1px solid #060;");
+                    this.setAttribute("style","box-shadow: var(--box-shadow-green); border: 1px solid var(--color-green);");
                 }
             });
 
@@ -220,9 +220,9 @@
                 validateCheckboxField(checkBoxValue,event)
 
                 if (checkBoxValue == false) {
-                    this.setAttribute("style","box-shadow:0 0 4px #811; border: 1px solid #600;");
+                    this.setAttribute("style","box-shadow:var(--box-shadow-red); border: 1px solid var(--color-red);");
                 } else{
-                    this.setAttribute("style","box-shadow: 0 0 4px #188; border: 1px solid #060;");
+                    this.setAttribute("style","box-shadow: var(--box-shadow-green); border: 1px solid var(--color-green);");
                 }
             });
 
@@ -235,8 +235,16 @@
         }
 
         function isValidNumber(telNumberValue){
-            telNumberValue.replace(/[^\d]/g, '');
-            if(telNumberValue.length > 6 && telNumberValue.length < 11) {  return true;  }
+            let phoneno = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+            if(telNumberValue.match(phoneno))
+            {
+                return true;
+            }
+            else
+            {
+
+                return false;
+            }
         }
 
         function isValidPassword(passwordValue){
