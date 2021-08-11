@@ -138,37 +138,33 @@
                          <div id="birthday-box__label">
                              Birth date
                          </div>
-                         <select name="birthday-day" id="day"></select>
-                         <select name="birthday-month" id="month">
-                             <option value="0">January
-                             <option value="1">February
-                             <option value="2">March
-                             <option value="3">April
-                             <option value="4">May
-                             <option value="5">June
-                             <option value="6">July
-                             <option value="7">August
-                             <option value="8">September
-                             <option value="9">October
-                             <option value="10">November
-                             <option value="11">December
+
+                         <select required onchange="change_year()" oninvalid="this.setCustomValidity('Please select a month')" oninput="setCustomValidity('')"  name="birthday-year" id="year">
+                             <option value="" disabled selected hidden>Year</option>
                          </select>
-                         <select name="birthday-year" id="year"></select>
+
+                         <select required onchange="change_month()" oninvalid="this.setCustomValidity('Please select a month')" oninput="setCustomValidity('')"  name="birthday-month" id="month">
+                             <option value="" disabled selected hidden>Month</option>
+                         </select>
+
+                         <select required oninvalid="this.setCustomValidity('Please select a day')" oninput="setCustomValidity('')" name="birthday-day" id="day">
+                             <option value="" disabled selected hidden>Day</option>
+                         </select>
 
                          <span id="gender-feedback"></span>
                          <div id="gender-box__label">
                              Gender
                          </div>
                          <div id= "female-box" class="gender-box__radio-buttons__box">
-                             <input type="radio" name="sex" id="female__radio"></input>
+                             <input required type="radio" name="sex" id="female__radio"></input>
                              <label for="female__radio" class="label-gender">Female</label>
                          </div>
                          <div id= "male-box" class="gender-box__radio-buttons__box">
-                             <input type="radio" name="sex" id="male__radio"></input>
+                             <input required type="radio" name="sex" id="male__radio"></input>
                              <label for="male__radio" class="label-gender">Male</label>
                          </div>
                          <div id= "diverse-box" class="gender-box__radio-buttons__box">
-                             <input type="radio" name="sex" id="diverse__radio"></input>
+                             <input required type="radio" name="sex" id="diverse__radio"></input>
                              <label for="diverse__radio" class="label-gender">Diverse</label>
                          </div>
 

@@ -78,6 +78,10 @@ body {
   color: red;
 }
 
+select:invalid {
+  color: var(--color-grey-light-1);
+}
+
 /*.u-center-text {text-align: center;}
 
 .u-margin-bottom-small {margin-bottom: 1.5rem;}
@@ -178,9 +182,10 @@ body {
   transform: translate(-50%, -50%) scale(0);
   transition: 200ms ease-in-out;
   z-index: 1000;
-  padding: 5rem 10% 5rem 5%;
+  padding: 5rem 10% 5rem 3%;
   background-color: var(--color-white);
-  width: 70rem;
+  width: 70%;
+  max-width: 80rem;
 }
 .popup--active {
   transform: translate(-50%, -50%) scale(1);
@@ -190,11 +195,11 @@ body {
   display: grid;
   gap: 2rem;
   grid-template-columns: 3fr 2fr 2fr 2fr 2fr 2fr 2fr;
-  grid-template-areas: ". form-heading form-heading form-heading close-btn close-btn close-btn" " name-feedback firstn firstn firstn lastn lastn lastn" "tel-feedback telnr telnr telnr telnr telnr telnr" "pswd-feedback pswd pswd pswd pswd pswd pswd" "bday-feedback bday-label bday-label bday-label bday-label bday-label bday-label" "bday-feedback day day month month year year" "gender-feedback gender-label gender-label gender-label gender-label gender-label gender-label" "gender-feedback f f m m d d" "opt-in-feedback opt-in-text opt-in-text opt-in-text opt-in-text opt-in-text opt-in-text" "opt-in-feedback opt-in-check opt-in-check opt-in-check opt-in-check opt-in-check opt-in-check" ". submit-btn submit-btn submit-btn submit-btn submit-btn submit-btn";
+  grid-template-areas: ". form-heading form-heading form-heading close-btn close-btn close-btn" " name-feedback firstn firstn firstn lastn lastn lastn" "tel-feedback telnr telnr telnr telnr telnr telnr" "pswd-feedback pswd pswd pswd pswd pswd pswd" "bday-feedback bday-label bday-label bday-label bday-label bday-label bday-label" "bday-feedback year year month month day day" "gender-feedback gender-label gender-label gender-label gender-label gender-label gender-label" "gender-feedback f f m m d d" "opt-in-feedback opt-in-text opt-in-text opt-in-text opt-in-text opt-in-text opt-in-text" "opt-in-feedback opt-in-check opt-in-check opt-in-check opt-in-check opt-in-check opt-in-check" ". submit-btn submit-btn submit-btn submit-btn submit-btn submit-btn";
   width: 100%;
   height: 80%;
 }
-#sign-up-form > * {
+#sign-up-form > *:not(span) {
   border-color: var(--color-grey-light-1);
   padding: 1rem;
 }

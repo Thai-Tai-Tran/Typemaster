@@ -11,7 +11,7 @@
           "tel-feedback telnr telnr telnr telnr telnr telnr"
           "pswd-feedback pswd pswd pswd pswd pswd pswd"
           "bday-feedback bday-label bday-label bday-label bday-label bday-label bday-label"
-          "bday-feedback day day month month year year"
+          "bday-feedback year year month month day day"
           "gender-feedback gender-label gender-label gender-label gender-label gender-label gender-label"
           "gender-feedback f f m m d d"
           "opt-in-feedback opt-in-text opt-in-text opt-in-text opt-in-text opt-in-text opt-in-text"
@@ -21,7 +21,7 @@
   height: 80%;
 
 
-  &>* {
+  &>*:not(span){
     border-color:  var(--color-grey-light-1);
     padding: 1rem;
   }

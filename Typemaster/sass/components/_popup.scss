@@ -7,9 +7,10 @@
   transform: translate(-50%, -50%) scale(0);
   transition: 200ms ease-in-out;
   z-index:1000;
-  padding: 5rem 10% 5rem 5%;
+  padding: 5rem 10% 5rem 3%;
   background-color: var(--color-white);
-  width: 70rem;
+  width:70%;
+  max-width: 80rem;
 
   &--active {
     transform: translate(-50%, -50%) scale(1);

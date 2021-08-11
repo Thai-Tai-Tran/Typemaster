@@ -44,3 +44,7 @@ body {
 [id$="feedback"] {
   color:red;
 }
+
+select:invalid {
+  color:var(--color-grey-light-1);
+}

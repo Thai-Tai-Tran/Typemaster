@@ -37,6 +37,109 @@
 
     // Date Selection
 
+        const Days = [31,28,31,30,31,30,31,31,30,31,30,31]; // days in the month - index => month [0-11]
+        const day = document.getElementById('day');
+        const month = document.getElementById('month');
+        const year = document.getElementById('year');
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // add days
+            for (let i = 1; i <= Days[0]; i++) { //add option days
+                let option = document.createElement("option");
+                option.innerHTML = '<option value="' + i + '">' + i + '</option>';
+                day.append(option);
+            }
+
+            // add months
+
+            for (let i=1;i <= 12;i++){
+                let option = document.createElement("option");
+                option.innerHTML = '<option value="'+ i + '">' + i + '</option>';
+                month.append(option);
+            }
+
+
+            // add years
+
+            let d = new Date();
+            for (let i=1930;i <= d.getFullYear();i++){// years start i
+                let option = document.createElement("option");
+                option.innerHTML = '<option value="'+ i + '">' + i + '</option>';
+                year.append(option);
+            }
+
+        })
+
+    // Leap year Function
+
+        function removeOptions(selectElement) {
+            let i, L = selectElement.options.length - 1;
+            for(i = L; i >= 0; i--) {
+                selectElement.remove(i);
+            }
+        }
+
+        function isLeapYear(year) {
+            year = parseInt(year);
+            if (year % 4 != 0) {
+                return false;
+            } else if (year % 400 == 0) {
+                return true;
+            } else if (year % 100 == 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function change_year()
+        {
+            if(isLeapYear(year.value))
+            {
+                Days[1] = 29;
+
+            }
+            else {
+                Days[1] = 28;
+            }
+
+            if(month.value == 2)
+            {
+                let dayVal = day.value;
+
+                removeOptions(day);
+                let option0 = document.createElement("option");
+                day.append(option0)
+                for (let i = 1; i <= Days[1]; i++) { //add option days
+                    let option = document.createElement("option");
+                    option.innerHTML = '<option value="' + i + '">' + i + '</option>';
+                    day.append(option);
+                }
+
+                if( dayVal > Days[ month ] )
+                {
+                    dayVal = 1;
+                }
+                day.value="dayVal";
+            }
+        }
+
+        function change_month() {
+
+            let dayVal = day.value;
+            removeOptions(day);
+            let cmonth = parseInt(month.value) - 1;
+            for (let i=1;i <= Days[ cmonth ];i++){ //add option days
+                let option = document.createElement("option");
+                option.innerHTML = '<option value="' + i + '">' + i + '</option>';
+                day.append(option);
+            }
+            if( dayVal > Days[ cmonth ] )
+            {
+                dayVal = 1;
+            }
+            day.value="dayVal";
+        }
     // Setup
 
         const form = document.getElementById("sign-up-form");
@@ -46,9 +149,6 @@
         const lastName = document.getElementById("last-name");
         const telNumber = document.getElementById("tel-number");
         const password = document.getElementById("password");
-        // const day = formElement.find("#day");
-        // const month = formElement.find("#month");
-        // const year = formElement.find("#year");
         const checkbox = document.getElementById("checkbox");
 
 
