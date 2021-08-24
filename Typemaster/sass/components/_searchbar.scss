@@ -1,0 +1,67 @@
+//Expanding Searchbar
+
+  #search-container {
+    margin-left:4rem;
+  }
+
+  #search-input {
+    position: absolute;
+    right:0;
+    top:50%;
+    transform: translateY(-50%);
+    display:block;
+    margin: 0 0 0 auto;
+    color: transparent;
+    cursor: pointer;
+    outline: none;
+    font-family: inherit;
+    border: solid 1px var(--color-grey-dark-2);
+    padding: 1.4rem 2.2rem;
+    width: 1.5rem;
+    border-radius: 100vh;
+    transition: all .5s;
+    background: var(--color-white) url('https://api.iconify.design/bx/bx-search-alt.svg?color=%235b657f&width=24&height=24') no-repeat right 0.9rem center;;
+  }
+
+  #search-input:focus {
+    width: 100%;
+    padding-right:3.7rem;
+    color: var(--color-grey-light-1);
+    cursor: auto;
+  }
+
+
+  input::-webkit-search-decoration,
+  input::-webkit-search-cancel-button {
+    display: none;
+  }
+
+// Autocomplete Box
+
+#autocomplete-box {
+  width:100%;
+  position: absolute;
+  right:0;
+  top: calc(100% + 2rem);
+  border: 1px solid var(--color-grey-light-2);
+  padding-block: 0.5rem;
+  background-color: var(--color-white);
+  box-shadow: var(--box-shadow-smooth);
+}
+
+#search-input:focus ~ #autocomplete-box {
+
+}
+
+#autocomplete-box ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+#autocomplete-box ul li {
+  padding: 5px 0.5rem;
+}
+#autocomplete-box ul li:hover {
+  background: var(--color-grey-light-2);
+}
+

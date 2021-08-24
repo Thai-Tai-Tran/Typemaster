@@ -27,10 +27,18 @@
     --color-green: #060;
     --color-green-rgb: 0,102,0;
 
+
     // BOX SHADOW
 
     --box-shadow-red: 0 0 4px #811;
     --box-shadow-green: 0 0 4px #188;
+  --box-shadow-smooth:
+      0 1px 1px rgba(0,0,0,0.12),
+      0 2px 2px rgba(0,0,0,0.12),
+      0 4px 4px rgba(0,0,0,0.12),
+      0 8px 8px rgba(0,0,0,0.12),
+      0 16px 16px rgba(0,0,0,0.12);
+
 
 
   // FONT

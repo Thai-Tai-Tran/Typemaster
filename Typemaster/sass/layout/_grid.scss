@@ -29,10 +29,12 @@
     }
   }
   &__button-box {
+    position: relative;
     flex-direction: row;
     grid-area: button;
     justify-content: flex-end;
     gap: 1.2rem;
+    align-items: center;
 
   }
 }

@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/main.css">
-        <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+        <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet">
@@ -18,10 +18,14 @@
                 <div class="grid__col header__logo-box">
                     <img src = "img/logo.png" alt = "Logo" class = "top-bar__logo">
                 </div>
-                <div class="grid__col header__button-box">
-                    <button id="popup-su__button-open" class="btn btn--grey rounded-sm "> Sign Up</button>
+                <nav class="grid__col header__button-box">
+                    <button id="popup-su__button-open" class="btn btn--grey rounded-sm"> Sign Up</button>
                     <button class="btn btn--grey rounded-sm "> Pre-Order Now</button>
-                </div>
+                    <form autocomplete="off" id="search-container">
+                        <input type="text" id="search-input" onKeyUp="showResults(this.value)" />
+                        <div id="autocomplete-box" class="rounded inactive"></div>
+                    </form>
+                </nav>
             </header>
 
             <div class="grid__row section-about gap-sm-r">
@@ -183,7 +187,7 @@
 
         <div id="overlay" class="overlay overlay"></div>
 
-
-        <script src="js/script.js"></script>
+        <script src="js/popup-form.js"></script>
+        <script src="js/searchbar.js"></script>
     </body>
 </html>

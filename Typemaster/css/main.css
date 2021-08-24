@@ -19,6 +19,12 @@
   --color-green-rgb: 0,102,0;
   --box-shadow-red: 0 0 4px #811;
   --box-shadow-green: 0 0 4px #188;
+  --box-shadow-smooth:
+      0 1px 1px rgba(0,0,0,0.12),
+      0 2px 2px rgba(0,0,0,0.12),
+      0 4px 4px rgba(0,0,0,0.12),
+      0 8px 8px rgba(0,0,0,0.12),
+      0 16px 16px rgba(0,0,0,0.12);
   --default-font-size: 1.4rem;
   --screen-sm-min: 576px;
   --screen-md-min: 768px;
@@ -104,6 +110,10 @@ select:invalid {
 
 .gap-sm-r {
   padding-right: 5rem;
+}
+
+.inactive {
+  transform: scale(0);
 }
 
 .btn {
@@ -320,6 +330,66 @@ select:invalid {
   padding: 1.5rem;
 }
 
+#search-container {
+  margin-left: 4rem;
+}
+
+#search-input {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: block;
+  margin: 0 0 0 auto;
+  color: transparent;
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
+  border: solid 1px var(--color-grey-dark-2);
+  padding: 1.4rem 2.2rem;
+  width: 1.5rem;
+  border-radius: 100vh;
+  transition: all 0.5s;
+  background: var(--color-white) url("https://api.iconify.design/bx/bx-search-alt.svg?color=%235b657f&width=24&height=24") no-repeat right 0.9rem center;
+}
+
+#search-input:focus {
+  width: 100%;
+  padding-right: 3.7rem;
+  color: var(--color-grey-light-1);
+  cursor: auto;
+}
+
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button {
+  display: none;
+}
+
+#autocomplete-box {
+  width: 100%;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 2rem);
+  border: 1px solid var(--color-grey-light-2);
+  padding-block: 0.5rem;
+  background-color: var(--color-white);
+  box-shadow: var(--box-shadow-smooth);
+}
+
+#autocomplete-box ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#autocomplete-box ul li {
+  padding: 5px 0.5rem;
+}
+
+#autocomplete-box ul li:hover {
+  background: var(--color-grey-light-2);
+}
+
 .grid, .grid > * {
   padding: 10px 0;
   gap: 2rem;
@@ -343,10 +413,12 @@ select:invalid {
   width: 3rem;
 }
 .header__button-box {
+  position: relative;
   flex-direction: row;
   grid-area: button;
   justify-content: flex-end;
   gap: 1.2rem;
+  align-items: center;
 }
 
 .section-about {
