@@ -1,4 +1,7 @@
-// suggestion array
+const searchContainer = document.querySelector("#search-container");
+const inputBox = document.querySelector(".search-input");
+const results = document.querySelector(".autocomplete-box");
+
 
 let search_terms = [
     "Mechanical Keyboards",
@@ -15,27 +18,56 @@ let search_terms = [
     "Membrane Keyboards"
 ];
 
-function autocompleteMatch(input) {
-    if (input == '') {
-        return [];
+document.onkeyup = function(e){
+    let searchResults = document.getElementById("search-results-list")
+    if(!results.classList.contains("autocomplete-box--inactive")){
+        if (!searchResults.hasChildNodes()){
+            results.classList.add("autocomplete-box--inactive");
+        }
     }
 
-    let reg = new RegExp(input)
-    return search_terms.filter(function (term) {
-        if (term.match(reg)) {
-            return term;
+}
+document.onclick = function(e){
+    if(e.target === inputBox){
+        inputBox.classList.add("search-input--active");
+        let searchResults = document.getElementById("search-results-list")
+        if (searchResults.hasChildNodes()) {
+            results.classList.remove("autocomplete-box--inactive");
         }
+
+    }else if (!searchContainer.contains(e.target)) {
+        inputBox.classList.remove("search-input--active");
+        results.classList.add("autocomplete-box--inactive");
+    }
+};
+
+function autocompleteMatch(Input) {
+    return search_terms.filter(e=>e.toLowerCase().indexOf(Input.toLowerCase()) !== -1);
+}
+
+
+function showResults(val) {
+   results.innerHTML = '';
+   let list = '';
+   let terms = autocompleteMatch(val);
+   for (let i=0; i<terms.length; i++) {
+        list += '<li>' + terms[i] + '</li>';
+   }
+   results.innerHTML = '<ul id="search-results-list">' + list + '</ul>';
+   results.classList.remove("autocomplete-box--inactive");
+   replaceInput()
+   }
+
+
+function replaceInput() {
+    let searchResults = document.getElementById("search-results-list");
+    searchResults.addEventListener('click', function(e) {
+        inputBox.value = e.target.innerText;
+        results.classList.add("autocomplete-box--inactive");
     });
 }
 
-    function showResults(val) {
-        let results = document.getElementById("autocomplete-box");
-        results.innerHTML = '';
-        let list = '';
-        let terms = autocompleteMatch(val);
-        for (let i=0; i<terms.length; i++) {
-            list += '<li>' + terms[i] + '</li>';
-        }
-        results.innerHTML = '<ul>' + list + '</ul>';
-        results.classList.remove("inactive");
-    }
+
+
+
+

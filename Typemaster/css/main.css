@@ -112,10 +112,6 @@ select:invalid {
   padding-right: 5rem;
 }
 
-.inactive {
-  transform: scale(0);
-}
-
 .btn {
   padding: 1.5rem;
   border: none;
@@ -334,7 +330,7 @@ select:invalid {
   margin-left: 4rem;
 }
 
-#search-input {
+.search-input {
   position: absolute;
   right: 0;
   top: 50%;
@@ -353,7 +349,7 @@ select:invalid {
   background: var(--color-white) url("https://api.iconify.design/bx/bx-search-alt.svg?color=%235b657f&width=24&height=24") no-repeat right 0.9rem center;
 }
 
-#search-input:focus {
+.search-input--active {
   width: 100%;
   padding-right: 3.7rem;
   color: var(--color-grey-light-1);
@@ -365,7 +361,9 @@ input::-webkit-search-cancel-button {
   display: none;
 }
 
-#autocomplete-box {
+.autocomplete-box {
+  overflow-x: hidden;
+  opacity: 1;
   width: 100%;
   position: absolute;
   right: 0;
@@ -374,19 +372,26 @@ input::-webkit-search-cancel-button {
   padding-block: 0.5rem;
   background-color: var(--color-white);
   box-shadow: var(--box-shadow-smooth);
+  transition: all 0.5s;
 }
 
-#autocomplete-box ul {
+.autocomplete-box--inactive {
+  opacity: 0;
+  width: 1.5rem;
+}
+
+.autocomplete-box ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
+  cursor: pointer;
 }
 
-#autocomplete-box ul li {
+.autocomplete-box ul li {
   padding: 5px 0.5rem;
 }
 
-#autocomplete-box ul li:hover {
+.autocomplete-box ul li:hover {
   background: var(--color-grey-light-2);
 }
 
