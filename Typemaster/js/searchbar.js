@@ -44,7 +44,7 @@ document.onclick = function(e){
 };
 
 function autocompleteMatch(Input) {
-    if(Input === ""){
+    if((Input === "") || (Input === " ")) {
         return []
     }
     return search_terms.filter(e=>e.toLowerCase().indexOf(Input.toLowerCase()) !== -1);
