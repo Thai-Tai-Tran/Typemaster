@@ -1,6 +1,8 @@
 const searchContainer = document.querySelector("#search-container");
 const inputBox = document.querySelector(".search-input");
 const results = document.querySelector(".autocomplete-box");
+const preOrdBtn = document.querySelector("#pre-order-button-top");
+const SUBtn = document.querySelector("#popup-su__button-open");
 
 
 let search_terms = [
@@ -29,19 +31,22 @@ document.onkeyup = function(e){
 }
 document.onclick = function(e){
     if(e.target === inputBox){
-        inputBox.classList.add("search-input--active");
+        toggleOn();
         let searchResults = document.getElementById("search-results-list")
         if (searchResults.hasChildNodes()) {
             results.classList.remove("autocomplete-box--inactive");
         }
 
     }else if (!searchContainer.contains(e.target)) {
-        inputBox.classList.remove("search-input--active");
+        toggleOff();
         results.classList.add("autocomplete-box--inactive");
     }
 };
 
 function autocompleteMatch(Input) {
+    if(Input === ""){
+        return []
+    }
     return search_terms.filter(e=>e.toLowerCase().indexOf(Input.toLowerCase()) !== -1);
 }
 
@@ -67,7 +72,17 @@ function replaceInput() {
     });
 }
 
+function toggleOn() {
+    inputBox.classList.add("search-input--active");
+    preOrdBtn.classList.add("inactive");
+    SUBtn.classList.add("inactive");
+}
 
+function toggleOff() {
+    inputBox.classList.remove("search-input--active");
+    preOrdBtn.classList.remove("inactive");
+    SUBtn.classList.remove("inactive");
+}
 
 
 
