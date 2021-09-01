@@ -22,3 +22,23 @@
 .inactive {
   transform: scale(0);
 }
+
+.img-highlight {
+  border: 1rem solid var(--color-red) !important;
+
+}
+
+.grayed-out {
+  filter : grayscale(1);
+  cursor: initial;
+  pointer-events: none;
+
+}
+
+.removed {
+  display: none !important;
+}
+
+.move-left {
+  transform: translateX(-100%) !important;
+}

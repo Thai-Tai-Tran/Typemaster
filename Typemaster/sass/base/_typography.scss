@@ -4,6 +4,7 @@ body {
   color: var(--color-grey-light-1);
   font-family: 'Roboto', sans-serif;
   font-size: var(--default-font-size);
+
 }
 
 [class^="heading"] {
@@ -34,7 +35,8 @@ body {
 }
 
 #popup-su__button-close{
-  font-size: 3.5rem;
+  --default-font-size: 3.5rem;
+  font-size: var(--default-font-size);
 
 }
 
@@ -47,5 +49,19 @@ body {
 
 select:invalid {
   color:var(--color-grey-light-1);
+}
+
+.row-head{
+  font-weight: 700;
+  color: var(--color-grey-dark-1);
+  --default-font-size: 1.8rem;
+  font-size: var(--default-font-size);
+}
+
+.img-box figcaption {
+  color: var(--color-white);
+  --default-font-size: 1.8rem;
+  font-size: var(--default-font-size);
+  text-align: center;
 }
 

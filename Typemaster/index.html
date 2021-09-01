@@ -8,6 +8,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet">
+        <link rel="shortcut icon" type="image/png" href="img/logo.png">
         <title>Typemaster</title>
     </head>
     <body>
@@ -20,7 +21,7 @@
                 </div>
                 <nav class="grid__col header__button-box">
                     <button id="popup-su__button-open" class="btn btn--grey rounded-sm"> Sign Up</button>
-                    <button id="pre-order-button-top" class="btn btn--grey rounded-sm "> Pre-Order Now</button>
+                    <button id="pre-order-button-top" class="btn btn--grey rounded-sm" onclick="window.location.href = '#anchor-custom';"> Pre-Order Now</button>
                     <form autocomplete="off" id="search-container">
                         <input type="text" class="search-input" onKeyUp="showResults(this.value)" />
                         <div class="autocomplete-box rounded autocomplete-box--inactive"></div>
@@ -38,7 +39,7 @@
                         Improve your productivity and gaming without breaking the bank. Upgrade to a high quality mechanical typing experience.
                     </p>
                     <div class="section-about__cta__area ">
-                        <button class="btn btn--orange rounded-sm">
+                        <button class="btn btn--orange rounded-sm" onclick="window.location.href = '#anchor-custom';">
                             Pre-Order Now
                         </button>
                         <div class="section-about__cta__area__info">
@@ -47,8 +48,7 @@
                     </div>
                 </div>
                 <div class="grid__col section-about__img-box">
-                    <img src = "img/keyboard_main.png" alt = "Keyboard Main" class = "img rounded">
-                </div>
+                    <img src = "img/keyboard_main.png" alt = "Keyboard Main" c/></div>
                 <div class="grid__col section-about__shape-box">
                     <div class="box--rounded-left"></div>
                 </div>
@@ -59,11 +59,9 @@
                     <div class="box--rounded-right"></div>
                 </div>
                 <div class="grid__col section-qualities__img-box-1">
-                    <img src = "img/keyboard_side-1.png" alt = "Keyboard Side 1" class = "img rounded">
-                </div>
+                    <img src = "img/keyboard_side-1.png" alt = "Keyboard Side 1" c/></div>
                 <div class="grid__col section-qualities__img-box-2 gap-sm-r">
-                    <img src = "img/keyboard_side-2.png" alt = "Keyboard Side 2" class = "img rounded">
-                </div>
+                    <img src = "img/keyboard_side-2.png" alt = "Keyboard Side 2" c/></div>
 
                 <div class="grid__col section-qualities__text-box">
                     <h2 class="heading-secondary">
@@ -114,6 +112,78 @@
                     </p>
                 </div>
             </div>
+            <div class="custom-heading">
+                <h2 id="anchor-custom" class="heading-custom heading-secondary">
+                    Customize your package
+                </h2>
+            </div>
+
+            <div class="grid__row section-custom">
+                <p id="row-head-layout" class="row-head"> Keyboard Layout</p>
+                <div id="custom-layout" class="grid__sub-row">
+                    <figure class="img-box">
+                        <img src="img/Layout_QWERTZ.png" alt="Layout 1"/>
+                        <figcaption class="rounded"> QWERTZ</figcaption>
+                    </figure>
+                    <figure class="img-box">
+                        <img src="img/Layout_QWERTY.png" alt="Layout 2"/>
+                        <figcaption class="rounded"> QWERTY</figcaption>
+                    </figure>
+                    <figure class="img-box">
+                        <img src="img/Layout_Dvorak.png" alt="Layout 3"/>
+                        <figcaption class="rounded"> Dvorak</figcaption>
+                    </figure>
+                    <figure class="img-box">
+                        <img src="img/Layout_Colemak.png" alt="Layout 4"/>
+                        <figcaption class="rounded"> Colemak</figcaption>
+                    </figure>
+                </div>
+                <p id="row-head-switch" class="row-head"> Switch Type</p>
+                <div id="custom-switch" class="grid__sub-row">
+                    <figure class="img-box">
+                        <img src="img/Cherry_MX_Black.jpg" alt="Switch 1"/>
+                        <figcaption class="rounded"> Cherry MX Black</figcaption>
+                    </figure>
+                    <figure class="img-box">
+                        <img src="img/Cherry_MX_Blue.jpg" alt="Switch 2"/>
+                        <figcaption class="rounded"> Cherry MX Blue</figcaption>
+                    </figure>
+                    <figure class="img-box">
+                        <img src="img/Cherry_MX_Brown.jpg" alt="Switch 3"/>
+                        <figcaption class="rounded"> Cherry MX Brown</figcaption>
+                    </figure>
+                    <figure class="img-box">
+                        <img src="img/Cherry_MX_Red.jpg" alt="Switch 4"/>
+                        <figcaption class="rounded"> Cherry MX Red</figcaption>
+                    </figure>
+                </div>
+                <p id="row-head-extra" class="row-head"> Extras</p>
+                <div id = "custom-extra-mouse" class="grid__sub-row">
+                    <figure class="img-box" data-cust-type="mouse">
+                        <img src="img/Extra_Wireless_Mouse.jpg" alt="Extra Mouse 1"/>
+                        <figcaption class="rounded"> Wireless</figcaption>
+                    </figure>
+                    <figure class="img-box" data-cust-type="mouse">
+                        <img src="img/Extra_Wired_Mouse.jpg" alt="Extra Mouse 2"/>
+                        <figcaption class="rounded"> Wired</figcaption>
+                    </figure>
+
+                </div>
+                <div id = "custom-extra-other" class="grid__sub-row">
+                    <figure class="img-box">
+                        <img src="img/Extra_Mousepad.jpg" alt="Extra Other 1"/>
+                        <figcaption class="rounded"> Mousepad<br />(optional)</figcaption>
+                    </figure>
+                    <figure class="img-box">
+                        <img src="img/Extra_Lighting.jpg" alt="Extra Other 2"/>
+                        <figcaption class="rounded"> Lighting<br />(optional)</figcaption>
+                    </figure>
+                </div>
+                <button id= "confirm-select-btn"class="btn btn--orange rounded-sm grayed-out" onclick="summarizeOrder()">
+                    Confirm Selection
+                </button>
+            </div>
+
 
             <footer class="grid__row footer">
                 <div class="grid__col footer_copy-right">
@@ -189,5 +259,6 @@
 
         <script src="js/popup-form.js"></script>
         <script src="js/searchbar.js"></script>
+        <script src="js/keyboard-customization.js"></script>
     </body>
 </html>

@@ -1,0 +1,36 @@
+.img-box {
+  position: relative;
+  flex: 1;
+  box-shadow: var(--box-shadow-smooth);
+  transition: 0.2s;
+  height: 15rem;
+  border: 1rem solid var(--color-grey-light-2);
+
+  &:hover {
+    transform: translateY(-3px);
+
+  }
+
+  &:active {
+    transform: translateY(-1px);
+
+  }
+
+  & figcaption {
+    cursor: default;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--color-grey-dark-2);
+    padding: 1rem;
+    white-space: nowrap;
+
+}
+  & img {
+    height: 100%;
+    box-sizing: border-box;
+  }
+}
+
+
