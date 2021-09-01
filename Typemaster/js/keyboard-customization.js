@@ -19,19 +19,13 @@ for (let figure of figures) {
         selectionSingle(e, custSwitch, switchId);
         selectionSingle(e, custExtraM, extraMId);
 
-        if ((isDescendant(e.target, extraOId))) {
+        if ((isDescendant(e.target, extraOId) && (e.target.parentNode.classList.contains("img-box")))) {
             e.target.parentNode.classList.toggle("img-highlight");
         }
 
     })
 }
 
-// if(selectionComplete()) {
-//     confSelBtn.addEventListener("click", summarizeOrder());
-// } else {
-//         confSelBtn.removeEventListener("click", summarizeOrder ());
-//     }
-// }
 
 const isDescendant = (el, parentId) => {
     let isChild = false
