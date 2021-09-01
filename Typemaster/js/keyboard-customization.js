@@ -5,7 +5,6 @@ const custExtraM = document.querySelector("#custom-extra-mouse");
 const custExtraO = document.querySelector("#custom-extra-other");
 const confSelBtn = document.querySelector("#confirm-select-btn");
 
-
 for (let figure of figures) {
     figure.addEventListener("click", function (e) {
 
@@ -25,7 +24,6 @@ for (let figure of figures) {
 
     })
 }
-
 
 const isDescendant = (el, parentId) => {
     let isChild = false
@@ -91,15 +89,16 @@ function selectionComplete () {
         }
 }
 
-
-
 function summarizeOrder () {
     const custContainer = document.querySelector(".section-custom");
     let unSelectedOptions = custContainer.querySelectorAll("figure:not(.img-highlight)");
+
     let allOptionsLay = custLayout.querySelectorAll("figure");
     let allOptionsSw = custSwitch.querySelectorAll("figure");
     let allOptionsEM = custExtraM.querySelectorAll("figure");
     let allOptionsEO = custExtraO.querySelectorAll("figure");
+
+
     const custHeading = document.querySelector(".heading-custom");
 
     for (let element of unSelectedOptions) {
@@ -111,19 +110,26 @@ function summarizeOrder () {
     summaryMoveLeftEO();
     confSelBtn.classList.add("grayed-out");
     custHeading.innerText = "Your Selection";
+    confSelBtn.innerText="Your total is: " + calcPrice() +"€";
+
+    let node = document.createElement("DIV");
+    let textnode = document.createTextNode("*Base Price 200€ + Extras");
+    node.appendChild(textnode);
+    confSelBtn.appendChild(node);
 
 
-function summaryMoveLeft (allOptions) {
-    for (let element of allOptions) {
-        let i = Array.from(allOptions).indexOf(element)
-        let x = (i * -100);
-        let y = (i * -2)
-        if (element.classList.contains("img-highlight")) {
-            element.style.transform = "translateX(" + x + "%) translateX(" + y + "rem)";
+
+    function summaryMoveLeft (allOptions) {
+        for (let element of allOptions) {
+            let i = Array.from(allOptions).indexOf(element)
+            let x = (i * -100);
+            let y = (i * -2)
+            if (element.classList.contains("img-highlight")) {
+                element.style.transform = "translateX(" + x + "%) translateX(" + y + "rem)";
+            }
+
         }
-
     }
-}
 
     function summaryMoveLeftEO () {
         let optionsArray = Array.from(allOptionsEO)
@@ -139,8 +145,32 @@ function summaryMoveLeft (allOptions) {
             optionsArray[1].style.transform = "translateX(-200%) translateX(-4rem)";
         }
     }
-}
 
+    function calcPrice () {
+
+        let selectedOptions = custContainer.querySelectorAll("figure.img-highlight");
+
+        let WirelessMousePrice = 0;
+        let WiredMousePrice = 0;
+        let MousepadPrice = 0;
+        let LightingPrice = 0;
+
+        WirelessMousePrice = priceOfSelected(allOptionsEM[0]);
+        WiredMousePrice = priceOfSelected(allOptionsEM[1]);
+        MousepadPrice = priceOfSelected(allOptionsEO[0]);
+        LightingPrice = priceOfSelected(allOptionsEO[1]);
+
+        function priceOfSelected(target) {
+            if(Array.from(selectedOptions).includes(target)) {
+                return parseFloat(target.dataset.price);
+            } else {
+                return parseFloat("0");
+            }
+        }
+
+        return 200 + WirelessMousePrice + WiredMousePrice + MousepadPrice +LightingPrice;
+    }
+}
 
 
 

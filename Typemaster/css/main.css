@@ -457,16 +457,17 @@ input::-webkit-search-cancel-button {
 .img-box figcaption {
   cursor: default;
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  right: 0;
+  bottom: 0;
   background-color: var(--color-grey-dark-2);
   padding: 1rem;
   white-space: nowrap;
+  border-radius: 10px 10px 0 10px;
 }
 .img-box img {
   height: 100%;
   box-sizing: border-box;
+  object-fit: contain;
 }
 
 .grid, .grid > * {
