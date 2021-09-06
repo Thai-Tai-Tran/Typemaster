@@ -116,6 +116,13 @@ select:invalid {
   text-align: center;
 }
 
+.summary-text {
+  font-weight: 700;
+  color: var(--color-grey-dark-1);
+  --default-font-size: 1.8rem;
+  font-size: var(--default-font-size);
+}
+
 /*.u-center-text {text-align: center;}
 
 .u-margin-bottom-small {margin-bottom: 1.5rem;}
@@ -574,7 +581,7 @@ input::-webkit-search-cancel-button {
 
 .section-custom {
   grid-template-columns: 0.25fr 0.5fr 0.5fr 0.5fr 0.5fr 0.25fr;
-  grid-template-areas: "r-h-layout cust-layout cust-layout cust-layout cust-layout ." "r-h-switch cust-switch cust-switch cust-switch cust-switch ." "r-h-extra cust-extra-m cust-extra-m cust-extra-o cust-extra-o ." ". conf-sel-btn conf-sel-btn conf-sel-btn conf-sel-btn.";
+  grid-template-areas: "r-h-layout cust-layout cust-layout cust-layout cust-layout ." "r-h-switch cust-switch cust-switch cust-switch cust-switch ." "r-h-extra cust-extra-m cust-extra-m cust-extra-o cust-extra-o ." ". summary summary summary summary .";
 }
 
 .row-head {
@@ -615,8 +622,8 @@ input::-webkit-search-cancel-button {
   grid-area: cust-extra-o;
 }
 
-#confirm-select-btn {
-  grid-area: conf-sel-btn;
+.summary-row {
+  grid-area: summary;
   justify-self: center;
 }
 
