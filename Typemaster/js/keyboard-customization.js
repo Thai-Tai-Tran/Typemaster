@@ -118,7 +118,7 @@ const confSelBtn = document.querySelector("#confirm-select-btn");
         summaryMoveLeft(allOptionsSw);
         summaryMoveLeft(allOptionsEM);
         summaryMoveLeftEO();
-        confSelBtn.classList.add("inactive");
+        confSelBtn.classList.add("grayed-out");
         custHeading.innerText = "Your Selection";
 
         // add Summary Texts

@@ -201,6 +201,10 @@ select:invalid {
   outline: none;
 }
 
+#confirm-select-btn {
+  margin-bottom: 1rem;
+}
+
 [class^=box--rounded] {
   display: block;
   background-color: var(--color-grey-light-2);
@@ -625,6 +629,7 @@ input::-webkit-search-cancel-button {
 .summary-row {
   grid-area: summary;
   justify-self: center;
+  align-items: center;
 }
 
 .footer_copy-right {
