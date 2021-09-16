@@ -28,7 +28,7 @@
 
 }
 
-.grayed-out {
+.grayed-out, .grayed-out--final {
   filter : grayscale(1);
   cursor: initial;
   pointer-events: none;

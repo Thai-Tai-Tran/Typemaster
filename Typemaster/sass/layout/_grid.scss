@@ -108,7 +108,27 @@
   grid-template-columns: 0.25fr 0.5fr 0.5fr 0.5fr 0.5fr 0.25fr;
   grid-template-areas: ". icb-1 icb-2 icb-3 icb-4 .";
 
+  @include lg {
+    grid-template-areas: ". icb-1 icb-1 icb-2 icb-2 ."
+                         ". icb-3 icb-3 icb-4 icb-4 .";
+  }
+
+  @include md {
+    grid-template-areas: ". icb-1 icb-1 icb-1 icb-1 ."
+                         ". icb-2 icb-2 icb-2 icb-2 ."
+                         ". icb-3 icb-3 icb-3 icb-3 ."
+                         ". icb-4 icb-4 icb-4 icb-4 .";
+  }
+  &>* {
+    @include md {
+      align-items: center;
+      text-align: center;
+    }
+  }
+
 }
+
+
 .icon-box{
   &__bg{
     background-color: var(--color-primary);

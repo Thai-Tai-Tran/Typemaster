@@ -21,18 +21,23 @@
     box-shadow: 0 .5rem 1rem rgba(var(--color-black), .2);
   }
 
+
+  &--orange {
+    @extend .btn;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    margin-right: 1rem;
+  }
+
+  &--gray {
+    @extend .btn;
+    background-color: var(--color-grey-light-2);
+    color: var(--color-grey-dark-2);
+  }
+
 }
 
-.btn--orange {
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  margin-right: 1rem;
-}
 
-.btn--grey {
-  background-color: var(--color-grey-light-2);
-  color: var(--color-grey-dark-2);
-}
 
 #popup-su__button-close {
   cursor: pointer;

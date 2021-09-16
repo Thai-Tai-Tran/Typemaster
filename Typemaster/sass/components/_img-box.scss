@@ -1,3 +1,5 @@
+@use "../abstracts" as *;
+
 .img-box {
   position: relative;
   flex: 1;
@@ -25,6 +27,11 @@
     padding: 1rem;
     white-space: nowrap;
     border-radius: 10px 10px 0 10px;
+
+    @include lg {
+      --default-font-size: 1.2rem;
+      white-space: inherit;
+    }
 
 }
   & img {

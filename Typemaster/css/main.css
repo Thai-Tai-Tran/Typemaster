@@ -32,10 +32,6 @@
           0 8px 8px rgba(0,0,0,0.06),
           0 16px 16px rgba(0,0,0,0.06);
   --default-font-size: 1.4rem;
-  --screen-sm-min: 576px;
-  --screen-md-min: 768px;
-  --screen-lg-min: 992px;
-  --screen-xl-min: 1200px;
 }
 
 html {
@@ -149,7 +145,7 @@ select:invalid {
   border: 1rem solid var(--color-red) !important;
 }
 
-.grayed-out {
+.grayed-out, .grayed-out--final {
   filter: grayscale(1);
   cursor: initial;
   pointer-events: none;
@@ -163,32 +159,30 @@ select:invalid {
   transform: translateX(-100%) !important;
 }
 
-.btn {
+.btn, .btn--gray, .btn--orange {
   padding: 1.5rem;
   border: none;
   transition: 0.3s;
   cursor: pointer;
 }
-.btn:hover {
+.btn:hover, .btn--gray:hover, .btn--orange:hover {
   transform: translateY(-3px);
   box-shadow: 0 1rem 2rem rgba(var(--color-black), 0.2);
 }
-.btn:hover::after {
+.btn:hover::after, .btn--gray:hover::after, .btn--orange:hover::after {
   transform: scaleX(1.4) scaleY(1.6);
   opacity: 0;
 }
-.btn:active {
+.btn:active, .btn--gray:active, .btn--orange:active {
   transform: translateY(-1px);
   box-shadow: 0 0.5rem 1rem rgba(var(--color-black), 0.2);
 }
-
 .btn--orange {
   background-color: var(--color-primary);
   color: var(--color-white);
   margin-right: 1rem;
 }
-
-.btn--grey {
+.btn--gray {
   background-color: var(--color-grey-light-2);
   color: var(--color-grey-dark-2);
 }
@@ -475,6 +469,12 @@ input::-webkit-search-cancel-button {
   white-space: nowrap;
   border-radius: 10px 10px 0 10px;
 }
+@media (max-width: 991px) {
+  .img-box figcaption {
+    --default-font-size: 1.2rem;
+    white-space: inherit;
+  }
+}
 .img-box img {
   height: 100%;
   box-sizing: border-box;
@@ -555,6 +555,22 @@ input::-webkit-search-cancel-button {
 .section-usps {
   grid-template-columns: 0.25fr 0.5fr 0.5fr 0.5fr 0.5fr 0.25fr;
   grid-template-areas: ". icb-1 icb-2 icb-3 icb-4 .";
+}
+@media (max-width: 991px) {
+  .section-usps {
+    grid-template-areas: ". icb-1 icb-1 icb-2 icb-2 ." ". icb-3 icb-3 icb-4 icb-4 .";
+  }
+}
+@media (max-width: 767px) {
+  .section-usps {
+    grid-template-areas: ". icb-1 icb-1 icb-1 icb-1 ." ". icb-2 icb-2 icb-2 icb-2 ." ". icb-3 icb-3 icb-3 icb-3 ." ". icb-4 icb-4 icb-4 icb-4 .";
+  }
+}
+@media (max-width: 767px) {
+  .section-usps > * {
+    align-items: center;
+    text-align: center;
+  }
 }
 
 .icon-box__bg {
