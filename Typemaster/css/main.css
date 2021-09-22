@@ -34,6 +34,20 @@
   --default-font-size: 1.4rem;
 }
 
+@keyframes opacityOn {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 html {
   font-size: 62.5%;
   scroll-behavior: smooth;
@@ -159,6 +173,14 @@ select:invalid {
   transform: translateX(-100%) !important;
 }
 
+.fadeInOut {
+  animation: opacityOn 5s normal forwards;
+}
+
+.error {
+  color: var(--color-red);
+}
+
 .btn, .btn--gray, .btn--orange {
   padding: 1.5rem;
   border: none;
@@ -238,13 +260,17 @@ select:invalid {
 }
 
 .popup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 90%;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
   transition: 200ms ease-in-out;
   z-index: 1000;
-  padding: 5rem 10% 5rem 3%;
+  padding: 5rem 8% 5rem 3%;
   background-color: var(--color-white);
   width: 70%;
   max-width: 80rem;
@@ -255,11 +281,13 @@ select:invalid {
 
 #sign-up-form {
   display: grid;
-  gap: 2rem;
+  overflow: auto;
+  gap: 1.2rem;
+  padding-right: 0.8rem;
   grid-template-columns: 3fr 2fr 2fr 2fr 2fr 2fr 2fr;
-  grid-template-areas: ". form-heading form-heading form-heading close-btn close-btn close-btn" " name-feedback firstn firstn firstn lastn lastn lastn" "tel-feedback telnr telnr telnr telnr telnr telnr" "pswd-feedback pswd pswd pswd pswd pswd pswd" "bday-feedback bday-label bday-label bday-label bday-label bday-label bday-label" "bday-feedback year year month month day day" "gender-feedback gender-label gender-label gender-label gender-label gender-label gender-label" "gender-feedback f f m m d d" "opt-in-feedback opt-in-text opt-in-text opt-in-text opt-in-text opt-in-text opt-in-text" "opt-in-feedback opt-in-check opt-in-check opt-in-check opt-in-check opt-in-check opt-in-check" ". submit-btn submit-btn submit-btn submit-btn submit-btn submit-btn";
+  grid-template-areas: ". form-heading form-heading form-heading close-btn close-btn close-btn" "usern-feedback usern usern usern usern usern usern" "name-feedback firstn firstn firstn lastn lastn lastn" "email-feedback email email email email email email" "tel-feedback telnr telnr telnr telnr telnr telnr" "pswd-feedback pswd pswd pswd pswd pswd pswd" "bday-feedback bday-label bday-label bday-label bday-label bday-label bday-label" "bday-feedback year year month month day day" "gender-feedback gender-label gender-label gender-label gender-label gender-label gender-label" "gender-feedback f f m m d d" "opt-in-feedback opt-in-text opt-in-text opt-in-text opt-in-text opt-in-text opt-in-text" "opt-in-feedback opt-in-check opt-in-check opt-in-check opt-in-check opt-in-check opt-in-check" ". submit-btn submit-btn submit-btn submit-btn submit-btn submit-btn" ". submit-feedback submit-feedback submit-feedback submit-feedback submit-feedback submit-feedback";
   width: 100%;
-  height: 80%;
+  height: 90%;
 }
 #sign-up-form > *:not(span) {
   border-color: var(--color-grey-light-1);
@@ -281,6 +309,14 @@ select:invalid {
   justify-self: end;
 }
 
+#username-feedback {
+  grid-area: usern-feedback;
+}
+
+#username {
+  grid-area: usern;
+}
+
 #name-feedback {
   grid-area: name-feedback;
 }
@@ -291,6 +327,14 @@ select:invalid {
 
 #last-name {
   grid-area: lastn;
+}
+
+#email-feedback {
+  grid-area: email-feedback;
+}
+
+#email {
+  grid-area: email;
 }
 
 #tel-number-feedback {
@@ -371,9 +415,15 @@ select:invalid {
   padding: 0;
 }
 
-#submit {
+#btnSubmit {
   grid-area: submit-btn;
   padding: 1.5rem;
+}
+
+.submit-feedback {
+  grid-area: submit-feedback;
+  justify-self: center;
+  opacity: 0;
 }
 
 #search-container {

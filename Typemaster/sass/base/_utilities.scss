@@ -42,3 +42,11 @@
 .move-left {
   transform: translateX(-100%) !important;
 }
+
+.fadeInOut {
+  animation: opacityOn 5s normal forwards;
+}
+
+.error {
+  color: var(--color-red);
+}
