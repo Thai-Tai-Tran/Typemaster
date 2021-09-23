@@ -230,7 +230,6 @@
                 }, 2000);
         }
 
-
     // Fast Feedback
 
         function enableFastFeedback(){
@@ -419,7 +418,7 @@
 
 
     async function checkUserNumber() {
-        const response = await fetch('checkUserNumber.php');
+        const response = await fetch('php/checkUserNumber.php');
         if (!response.ok) {
             const message = `An error has occured: ${response.status}`;
             throw new Error(message);

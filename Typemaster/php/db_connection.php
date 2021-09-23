@@ -14,5 +14,4 @@ function connection () {
     return $conn;
 }
 
-
 ?>

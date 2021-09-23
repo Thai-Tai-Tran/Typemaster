@@ -13,13 +13,20 @@
     </head>
     <body>
 
-        <div class="grid">
+        <div class="home-grid">
 
             <header class="grid__row header">
-                <div class="grid__col header__logo-box">
-                    <img src = "img/logo.png" alt = "Logo" class = "top-bar__logo">
+                <div class="grid__col header__left-box">
+                    <a href="">
+                        <img src = "img/logo.png" alt = "Logo" class = "logo">
+                    </a>
+                    <button class="btn--users" onclick="window.location.href = '' +
+                     'users/';">
+                        <span class="iconify" data-icon="bx:bxs-user" style="color: #5b657f;" data-width="40" data-height="40"></span>
+                    </button>
+
                 </div>
-                <nav class="grid__col header__button-box">
+                <nav class="grid__col header__right-box">
                     <button id="popup-su__button-open" class="btn--gray rounded-sm"> Sign Up</button>
                     <button id="pre-order-button-top" class="btn--gray rounded-sm" onclick="window.location.href = '#anchor-custom';"> Pre-Order Now</button>
                     <form autocomplete="off" id="search-container">
@@ -190,14 +197,14 @@
 
             <footer class="grid__row footer">
                 <div class="grid__col footer_copy-right">
-                    <span class="bold">Typemaster 2021</span> | All Rights Reserved
+                    <span class="bold">Typemaster 2021&nbsp;</span> | All Rights Reserved
                 </div>
             </footer>
         </div>
         <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
         <div class="popup rounded popup" id="popup-su">
 
-                 <form id="sign-up-form" action="sign_up_form.php" target="dummyframe" method="post">
+                 <form id="sign-up-form" action="php/sign_up_form.php" target="dummyframe" method="post">
                          <h2 id="sign-up-form__header__heading" class="heading-secondary">Sign Up</h2>
                          <button id="popup-su__button-close">&times;</button>
 
@@ -239,15 +246,15 @@
                              Gender
                          </div>
                          <div id= "female-box" class="gender-box__radio-buttons__box">
-                             <input required type="radio" name="gender" id="female__radio"></input>
+                             <input required type="radio" name="gender" value="female" id="female__radio"></input>
                              <label for="female__radio" class="label-gender">Female</label>
                          </div>
                          <div id= "male-box" class="gender-box__radio-buttons__box">
-                             <input required type="radio" name="gender" id="male__radio"></input>
+                             <input required type="radio" name="gender" id="male__radio" value="male"></input>
                              <label for="male__radio" class="label-gender">Male</label>
                          </div>
                          <div id= "diverse-box" class="gender-box__radio-buttons__box">
-                             <input required type="radio" name="gender" id="diverse__radio"></input>
+                             <input required type="radio" name="gender" id="diverse__radio" value="diverse"></input>
                              <label for="diverse__radio" class="label-gender">Diverse</label>
                          </div>
 
@@ -271,7 +278,6 @@
          </div>
 
         <div id="overlay" class="overlay overlay"></div>
-
         <script src="js/popup-form.js"></script>
         <script src="js/searchbar.js"></script>
         <script src="js/keyboard-customization.js"></script>
