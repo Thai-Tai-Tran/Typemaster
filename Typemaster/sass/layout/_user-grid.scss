@@ -5,7 +5,7 @@
 
 
 .user-table {
-
+  background-color: rgba(var(--color-grey-dark-2-rgb), .1);
   margin-inline: calc(10% + 1.4rem);
   display: grid;
   grid-template-columns: repeat(10, minmax(auto, auto));

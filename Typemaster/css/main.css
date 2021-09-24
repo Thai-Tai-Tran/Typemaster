@@ -9,6 +9,10 @@
   --color-grey-dark-1-rgb: 21,36,68;
   --color-grey-dark-2: #5b657f;
   --color-grey-dark-2-rgb: 91, 101, 127;
+  --color-green: #219653;
+  --color-green-rgb: 33, 150, 83;
+  --color-blue: #56bddc;
+  --color-blue-rgb: 86, 189, 220;
   --color-white: #fff;
   --color-white-rgb: 255, 255, 255;
   --color-black: #000;
@@ -135,6 +139,7 @@ select:invalid {
 }
 
 .user-table > span {
+  color: rgba(var(--color-black-rgb), 0.7);
   font-size: clamp(1rem, 1rem + .3vw, var(--default-font-size) );
 }
 
@@ -164,6 +169,11 @@ select:invalid {
   border: 1rem solid var(--color-red) !important;
 }
 
+.edit-highlight {
+  background-color: var(--color-white);
+  color: var(--color-black) !important;
+}
+
 .grayed-out, .grayed-out--final {
   filter: grayscale(1);
   cursor: initial;
@@ -186,21 +196,21 @@ select:invalid {
   color: var(--color-red);
 }
 
-.btn, .btn--users, .btn--gray, .btn--orange {
+.btn, .btn--users, .btn--green, .btn--blue, .btn--gray, .btn--orange {
   padding: 1.5rem;
   border: none;
   transition: 0.3s;
   cursor: pointer;
 }
-.btn:hover, .btn--users:hover, .btn--gray:hover, .btn--orange:hover {
+.btn:hover, .btn--users:hover, .btn--green:hover, .btn--blue:hover, .btn--gray:hover, .btn--orange:hover {
   transform: translateY(-3px);
   box-shadow: 0 1rem 2rem rgba(var(--color-black), 0.2);
 }
-.btn:hover::after, .btn--users:hover::after, .btn--gray:hover::after, .btn--orange:hover::after {
+.btn:hover::after, .btn--users:hover::after, .btn--green:hover::after, .btn--blue:hover::after, .btn--gray:hover::after, .btn--orange:hover::after {
   transform: scaleX(1.4) scaleY(1.6);
   opacity: 0;
 }
-.btn:active, .btn--users:active, .btn--gray:active, .btn--orange:active {
+.btn:active, .btn--users:active, .btn--green:active, .btn--blue:active, .btn--gray:active, .btn--orange:active {
   transform: translateY(-1px);
   box-shadow: 0 0.5rem 1rem rgba(var(--color-black), 0.2);
 }
@@ -211,6 +221,14 @@ select:invalid {
 .btn--gray {
   background-color: var(--color-grey-light-2);
   color: var(--color-grey-dark-2);
+}
+.btn--blue {
+  background-color: var(--color-blue);
+  color: var(--color-white);
+}
+.btn--green {
+  background-color: var(--color-green);
+  color: var(--color-white);
 }
 .btn--users {
   background-color: var(--color-grey-light-2);
@@ -718,6 +736,7 @@ input::-webkit-search-cancel-button {
 }
 
 .user-table {
+  background-color: rgba(var(--color-grey-dark-2-rgb), 0.1);
   margin-inline: calc(10% + 1.4rem);
   display: grid;
   grid-template-columns: repeat(10, minmax(auto, auto));

@@ -51,7 +51,7 @@
             echo '<span data-row-id=' . $row["id"] . ' data-field-name='. $item .'>' . $row[$item] . '</span>'; //get items using property value
         }
         // add edit/delete buttons
-        echo "<span class='user-table__btn-container'><button class='btn--gray rounded-sm edit-btn' data-row-id=" . $row['id'] .">Edit</button><button class='btn--orange rounded-sm del-btn' data-row-id=" . $row['id'] .">Delete</button></span>";
+        echo "<span class='user-table__btn-container'><button class='btn--blue rounded-sm edit-btn' data-row-id=" . $row['id'] .">Edit</button><button class='btn--orange rounded-sm del-btn' data-row-id=" . $row['id'] .">Delete</button></span>";
     }
     echo "</div>";
     ?>

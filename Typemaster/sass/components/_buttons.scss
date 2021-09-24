@@ -34,6 +34,18 @@
     color: var(--color-grey-dark-2);
   }
 
+  &--blue {
+    @extend .btn;
+    background-color: var(--color-blue);
+    color: var(--color-white);
+  }
+
+  &--green {
+    @extend .btn;
+    background-color: var(--color-green);
+    color: var(--color-white);
+  }
+
   &--users {
     @extend .btn;
     background-color: var(--color-grey-light-2);
