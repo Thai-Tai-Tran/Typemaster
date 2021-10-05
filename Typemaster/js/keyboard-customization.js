@@ -29,6 +29,7 @@ const confSelBtn = document.querySelector("#confirm-select-btn");
 
     // Sub-Functions
 
+    // function to determine whether the clicked element is a descendant of a parent
     const isDescendant = (el, parentId) => {
         let isChild = false
 
@@ -45,14 +46,19 @@ const confSelBtn = document.querySelector("#confirm-select-btn");
         return isChild
     }
 
+
     function selectionSingle (e, container, parentId) {
 
+        // highlight clicked img box
         if ((isDescendant(e.target, parentId)) && (e.target.parentNode.classList.contains("img-box"))) {
 
+            // remove highlight from other options in the same category
             for (let i = 0; i < container.children.length; i++) {
                 container.children[i].classList.remove('img-highlight')
             }
             e.target.parentNode.classList.toggle("img-highlight");
+
+            // remove grayed out effect on submit button, if the selection is complete
             if (selectionComplete()) {
                 confSelBtn.classList.remove("grayed-out");
             }else {
@@ -62,7 +68,7 @@ const confSelBtn = document.querySelector("#confirm-select-btn");
         }
 
     }
-
+    // check for highlights on essential selection items
     function selectionComplete () {
 
         let checkLayout = false;
@@ -101,12 +107,10 @@ const confSelBtn = document.querySelector("#confirm-select-btn");
         const summaryContainer = document.querySelector(".summary-row");
         let unSelectedOptions = custContainer.querySelectorAll("figure:not(.img-highlight)");
 
-
         let allOptionsLay = custLayout.querySelectorAll("figure");
         let allOptionsSw = custSwitch.querySelectorAll("figure");
         let allOptionsEM = custExtraM.querySelectorAll("figure");
         let allOptionsEO = custExtraO.querySelectorAll("figure");
-
 
         const custHeading = document.querySelector(".heading-custom");
 
@@ -114,11 +118,14 @@ const confSelBtn = document.querySelector("#confirm-select-btn");
         for (let element of unSelectedOptions) {
             element.classList.add("inactive");
         }
+        // move selected options ot the left after other options are removed
         summaryMoveLeft(allOptionsLay);
         summaryMoveLeft(allOptionsSw);
         summaryMoveLeft(allOptionsEM);
         summaryMoveLeftEO();
+        // gray out submit btn
         confSelBtn.classList.add("grayed-out--final");
+        // change section header text
         custHeading.innerText = "Your Selection";
 
         // add Summary Texts
@@ -136,6 +143,7 @@ const confSelBtn = document.querySelector("#confirm-select-btn");
 
 
         // Sub-Functions
+        // move selected options ot the left after other options are removed
         function summaryMoveLeft (allOptions) {
             for (let element of allOptions) {
                 let i = Array.from(allOptions).indexOf(element)
@@ -147,14 +155,14 @@ const confSelBtn = document.querySelector("#confirm-select-btn");
 
             }
         }
-
+        // move selected options ot the left after other options are removed
         function summaryMoveLeftEO () {
             let optionsArray = Array.from(allOptionsEO)
             if ((optionsArray[0].classList.contains("img-highlight")) && (optionsArray[1].classList.contains("img-highlight"))) {
                 for (let element of allOptionsEO) {
                     element.style.transform = "translateX(-100%) translateX(-2rem)";
                 }
-                // let i = Array.from(allOptionsEO).indexOf(element)
+
             }else if ((optionsArray[0].classList.contains("img-highlight")) && !(optionsArray[1].classList.contains("img-highlight")))  {
                 optionsArray[0].style.transform = "translateX(-100%) translateX(-2rem)";
 

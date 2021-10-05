@@ -2,42 +2,48 @@
 /////////////////
 // GRID
 
-.grid, .grid>*{
-  padding: 10px 0;
-  gap:2rem;
-  display:grid;
-  width:100%;
 
-  &>*>*{
+.home-grid, .home-grid>*, .user-grid, .user-grid>* {
+  padding: 10px 0;
+  gap: 2rem;
+  display: grid;
+  width: 100%;
+}
+
+  .home-grid>*>*{
     display:flex;
     align-items: flex-start;
     flex-direction: column;
 
   }
-}
+
+
 /////////////////
 // Section Header
 .header {
   grid-template-columns: 0.25fr 1fr 1fr 0.25fr;
-  grid-template-areas: ". logo button .";
+  grid-template-areas: ". left-box right-box .";
 
-  &__logo-box{
-    grid-area: logo;
+  &__left-box{
+    grid-area: left-box;
+    flex-direction: row;
+    gap: 1rem;
 
     & img{
-      width:3rem;
+      width:4rem;
     }
   }
-  &__button-box {
+  &__right-box {
     position: relative;
     flex-direction: row;
-    grid-area: button;
+    grid-area: right-box;
     justify-content: flex-end;
     gap: 1.2rem;
     align-items: center;
 
   }
 }
+
 
 /////////////////
 // Section About
@@ -173,7 +179,6 @@
                        "r-h-switch cust-switch cust-switch cust-switch cust-switch ."
                        "r-h-extra cust-extra-m cust-extra-m cust-extra-o cust-extra-o ."
                        ". summary summary summary summary .";
-
 }
 .row-head{
   padding-left:3rem;
@@ -222,6 +227,7 @@
 /////////////////
 // Section Footer
 .footer_copy-right {
+  display:flex;
   flex-direction: initial;
   justify-content: center;
 }

@@ -13,13 +13,20 @@
     </head>
     <body>
 
-        <div class="grid">
+        <div class="home-grid">
 
             <header class="grid__row header">
-                <div class="grid__col header__logo-box">
-                    <img src = "img/logo.png" alt = "Logo" class = "top-bar__logo">
+                <div class="grid__col header__left-box">
+                    <a href="">
+                        <img src = "img/logo.png" alt = "Logo" class = "logo">
+                    </a>
+                    <button class="btn--users" onclick="window.location.href = '' +
+                     'users/';">
+                        <span class="iconify" data-icon="bx:bxs-user" style="color: #5b657f;" data-width="40" data-height="40"></span>
+                    </button>
+
                 </div>
-                <nav class="grid__col header__button-box">
+                <nav class="grid__col header__right-box">
                     <button id="popup-su__button-open" class="btn--gray rounded-sm"> Sign Up</button>
                     <button id="pre-order-button-top" class="btn--gray rounded-sm" onclick="window.location.href = '#anchor-custom';"> Pre-Order Now</button>
                     <form autocomplete="off" id="search-container">
@@ -190,76 +197,87 @@
 
             <footer class="grid__row footer">
                 <div class="grid__col footer_copy-right">
-                    <span class="bold">Typemaster 2021</span> | All Rights Reserved
+                    <span class="bold">Typemaster 2021&nbsp;</span> | All Rights Reserved
                 </div>
             </footer>
         </div>
-
+        <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
         <div class="popup rounded popup" id="popup-su">
 
-                 <form id="sign-up-form" action="">
+                 <form id="sign-up-form" action="php/sign_up_form.php" target="dummyframe" method="post">
                          <h2 id="sign-up-form__header__heading" class="heading-secondary">Sign Up</h2>
                          <button id="popup-su__button-close">&times;</button>
 
-                         <span id="name-feedback"></span>
-                         <input id="first-name" type="text" placeholder="First Name">
-                         <input id="last-name" type="text" placeholder="Last Name">
+                         <span data-type="feedback" id="username-feedback"></span>
+                         <input id="username" name="username" type="text" placeholder="Username">
 
-                        <span id="tel-number-feedback"></span>
-                        <input id="tel-number" type="tel" placeholder="Telephone Number">
+                         <span data-type="feedback" id="name-feedback"></span>
+                         <input id="first-name" name="first_name" type="text" placeholder="First Name">
+                         <input id="last-name" name="last_name" type="text" placeholder="Last Name">
 
-                        <span id="password-feedback"></span>
-                        <input id="password" type="password" placeholder="Password">
+                         <span data-type="feedback" id="email-feedback"></span>
+                         <input id="email" name="email" type="email" placeholder="Email Address">
 
-                         <span id="birthday-feedback"></span>
+                        <span data-type="feedback" id="tel-number-feedback"></span>
+                        <input id="tel-number" name="tel_number" type="tel" placeholder="Telephone Number">
+
+                        <span data-type="feedback" id="password-feedback"></span>
+                        <input id="password" name="password" type="password" placeholder="Password">
+
+                         <span data-type="feedback" id="birthday-feedback"></span>
                          <div id="birthday-box__label">
                              Birth date
                          </div>
 
-                         <select required onchange="change_year()" oninvalid="this.setCustomValidity('Please select a month')" oninput="setCustomValidity('')"  name="birthday-year" id="year">
+                         <select required onchange="change_year()" oninvalid="this.setCustomValidity('Please select a month')" oninput="setCustomValidity('')"  name="year" id="year">
                              <option value="" disabled selected hidden>Year</option>
                          </select>
 
-                         <select required onchange="change_month()" oninvalid="this.setCustomValidity('Please select a month')" oninput="setCustomValidity('')"  name="birthday-month" id="month">
+                         <select required onchange="change_month()" oninvalid="this.setCustomValidity('Please select a month')" oninput="setCustomValidity('')"  name="month" id="month">
                              <option value="" disabled selected hidden>Month</option>
                          </select>
 
-                         <select required oninvalid="this.setCustomValidity('Please select a day')" oninput="setCustomValidity('')" name="birthday-day" id="day">
+                         <select required oninvalid="this.setCustomValidity('Please select a day')" oninput="setCustomValidity('')" name="day" id="day">
                              <option value="" disabled selected hidden>Day</option>
                          </select>
 
-                         <span id="gender-feedback"></span>
+                         <span data-type="feedback" id="gender-feedback"></span>
                          <div id="gender-box__label">
                              Gender
                          </div>
                          <div id= "female-box" class="gender-box__radio-buttons__box">
-                             <input required type="radio" name="sex" id="female__radio"></input>
+                             <input required type="radio" name="gender" value="female" id="female__radio"></input>
                              <label for="female__radio" class="label-gender">Female</label>
                          </div>
                          <div id= "male-box" class="gender-box__radio-buttons__box">
-                             <input required type="radio" name="sex" id="male__radio"></input>
+                             <input required type="radio" name="gender" id="male__radio" value="male"></input>
                              <label for="male__radio" class="label-gender">Male</label>
                          </div>
                          <div id= "diverse-box" class="gender-box__radio-buttons__box">
-                             <input required type="radio" name="sex" id="diverse__radio"></input>
+                             <input required type="radio" name="gender" id="diverse__radio" value="diverse"></input>
                              <label for="diverse__radio" class="label-gender">Diverse</label>
                          </div>
 
-                         <span id="opt-in-feedback"></span>
+                         <span data-type="feedback" id="opt-in-feedback"></span>
                          <div id="opt-in-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam commodi consequuntur cum eius eligendi nam nihil obcaecati, sapiente unde voluptatum?</div>
                          <div id="opt-in-box-check">
                              <input id="checkbox" type="checkbox" name="cb">
                              <label for="checkbox">I accept</label>
                          </div>
 
-                         <input id="submit" class="btn--gray"type="submit" value="Register">
+                         <input id="btnSubmit" class="btn--gray" type='submit' name="btnSubmit" value="Register">
+
+                         <p class="submit-feedback">
+                             Thank you for your registration!
+                         </p>
                  </form>
+
+
 
              </div>
          </div>
 
         <div id="overlay" class="overlay overlay"></div>
-
         <script src="js/popup-form.js"></script>
         <script src="js/searchbar.js"></script>
         <script src="js/keyboard-customization.js"></script>

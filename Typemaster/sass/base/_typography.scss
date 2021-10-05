@@ -51,7 +51,8 @@ select:invalid {
   color:var(--color-grey-light-1);
 }
 
-.row-head{
+.row-head, .column-head{
+  text-transform: capitalize;
   font-weight: 700;
   color: var(--color-grey-dark-1);
   --default-font-size: 1.8rem;
@@ -72,3 +73,7 @@ select:invalid {
   font-size: var(--default-font-size);
 }
 
+.user-table > span {
+  color: rgba(var(--color-black-rgb), .7);
+  font-size: clamp(1rem, 1rem + .3vw, var(--default-font-size) );
+}

@@ -25,7 +25,11 @@
 
 .img-highlight {
   border: 1rem solid var(--color-red) !important;
+}
 
+.edit-highlight {
+  background-color:var(--color-white);
+  color: var(--color-black) !important;
 }
 
 .grayed-out, .grayed-out--final {
@@ -41,4 +45,12 @@
 
 .move-left {
   transform: translateX(-100%) !important;
+}
+
+.fadeInOut {
+  animation: opacityOn 5s normal forwards;
+}
+
+.error {
+  color: var(--color-red);
 }
