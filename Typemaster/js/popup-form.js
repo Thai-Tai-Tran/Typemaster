@@ -158,6 +158,7 @@ function closePopup() {
     const btnSubmit = document.getElementById("btnSubmit");
     const submitFeedback = document.querySelector(".submit-feedback");
 
+    let valid = false;
     let error = false;
 
      form.addEventListener('submit', formValidateFunction);
@@ -174,59 +175,74 @@ function closePopup() {
              let userNumber1;
              let userNumber2;
 
-         //check number of users before submission
-             checkUserNumber().then(number => {
-                 userNumber1 = number[0]["COUNT(*)"];
-             });
+         // validate input
+         validateUserNameField(userName.value, event)
+         validateFirstNameField(firstName.value, event)
+         validateLastNameField(lastName.value, event)
+         validateEmailAddressField(emailAddress.value, event)
+         validateTelNumberField(telNumber.value, event)
+         validatePasswordField(password.value, event)
+         validateCheckboxField(checkbox.checked, event)
 
-             checkUserNumber().catch(error => {
-                 error.message;
-
-             });
-
-
-        // validate input
-            validateUserNameField(userName.value, event)
-            validateFirstNameField(firstName.value, event)
-            validateLastNameField(lastName.value, event)
-            validateEmailAddressField(emailAddress.value, event)
-            validateTelNumberField(telNumber.value, event)
-            validatePasswordField(password.value, event)
-            validateCheckboxField(checkbox.checked, event)
+         // if validation fails reset in process indicator and stop the rest of the function
+         if(!valid) {
+             btnSubmit.value = "Register";
+             btnSubmit.classList.remove("grayed-out");
+             return;
+         }
 
 
-        // check number of users after submission
-             setTimeout(function(){
-                 checkUserNumber().then(number => {
-                     userNumber2 = number[0]["COUNT(*)"];
-                 });
-                 checkUserNumber().catch(error => {
-                     error.message;
-                     if (error.message != null) {
-                         if (error.message === "Unexpected token < in JSON at position 0" ) {
-                             submitFeedback.innerText = "An error has occured";
-                         } else{
-                             submitFeedback.innerText = error.message;
-                         }
+         ( async() => { //IIFE (Immediately Invoked Function Expression)
+                 //check number of users before submission
+                 userNumber1 = await checkUserNumber();
+                //check number of users after submission
+                 userNumber2 = await checkUserNumber();
 
-                         errorNote();
-                     }
-                 });
-             }, 1000);
+                 // reset form when user was added
+                 if(userNumber1<userNumber2) {
+                     resetForm();
+                     successNote();
+                 // no user was added + username was already taken, because there is no error or the error was thrown just before
+                 }else if(error === false || submitFeedback.innerText === "The username has already been taken") {
+                     submitFeedback.innerText = "The username has already been taken"
+                     errorNote();
+                 }
 
-        // reset form
-            setTimeout(function(){
-                if(userNumber1<userNumber2) {
-                    resetForm();
-                    successNote()
+             })()
 
-                }else if(error === false) {
-                        submitFeedback.innerText = "The username has already been taken"
-                        errorNote();
+         // userNumber1 = checkUserNumber().then();
+         //
+         // checkUserNumber().catch(error => {
+         //     error.message;
+         // });
 
-                    }
+        // // check number of users after submission
+        //  checkUserNumber().then(number => {
+        //      userNumber2 = number[0]["COUNT(*)"];
+        //
+        //      // reset form when user was added
+        //      if(userNumber1<userNumber2) {
+        //          resetForm();
+        //          successNote();
+        //      // username was already taken because there is no error, but no user was added
+        //      }else if(error === false) {
+        //          submitFeedback.innerText = "The username has already been taken"
+        //          errorNote();
+        //      }
+        //  });
+        //  // error handling
+        //  checkUserNumber().catch(error => {
+        //      error.message;
+        //      if (error.message != null) {
+        //          if (error.message === "Unexpected token < in JSON at position 0" ) {
+        //              submitFeedback.innerText = "An error has occured";
+        //          } else{
+        //              submitFeedback.innerText = error.message;
+        //          }
+        //          errorNote();
+        //      }
+        //  });
 
-            }, 2000);
     }
 
 // Fast Feedback
@@ -335,7 +351,6 @@ function closePopup() {
         }
         else
         {
-
             return false;
         }
     }
@@ -348,14 +363,15 @@ function closePopup() {
 
     // validate functions
     // fill feedback text and prevent submit, on invalid input
-
     function validateUserNameField(userNameValue, event){
 
         if(!isValidUserName(userNameValue)){
             document.getElementById("username-feedback").innerText = "Please enter at least two characters"
+            valid = false;
             event.preventDefault();
         } else {
             document.getElementById("username-feedback").innerText= "";
+            valid = true;
         }
     }
 
@@ -363,9 +379,11 @@ function closePopup() {
 
         if(!isValidName(firstNameValue)){
             document.getElementById("name-feedback").innerText = "Please enter at least two characters"
+            valid = false;
             event.preventDefault();
         } else {
             document.getElementById("name-feedback").innerText= "";
+            valid = true;
         }
     }
 
@@ -373,61 +391,88 @@ function closePopup() {
 
         if(!isValidName(lastNameValue)){
             document.getElementById("name-feedback").innerText = "Please enter at least two characters"
+            valid = false;
             event.preventDefault();
         } else {
             document.getElementById("name-feedback").innerText= "";
+            valid = true;
         }
     }
 
     function validateEmailAddressField(emailValue, event) {
         if (!isValidEmail(emailValue)) {
             document.getElementById("email-feedback").innerText = "Please enter a valid Email Address."
-            event.preventDefault()
+            valid = false;
+            event.preventDefault();
         } else {
             document.getElementById("email-feedback").innerText = "";
+            valid = true;
         }
     }
 
     function validateTelNumberField(telNumberValue, event) {
         if (!isValidNumber(telNumberValue)) {
             document.getElementById("tel-number-feedback").innerText = "Please enter a valid Telephone Number."
-            event.preventDefault()
+            valid = false;
+            event.preventDefault();
         } else {
             document.getElementById("tel-number-feedback").innerText = "";
+            valid = true;
         }
     }
-
 
     function validatePasswordField(passwordValue, event){
         if(!isValidPassword(passwordValue)){
             document.getElementById("password-feedback").innerText = "Please enter a password with at least 8 characters.";
+            valid = false;
             event.preventDefault();
         } else {
             document.getElementById("password-feedback").innerText = "";
+            valid = true;
         }
     }
 
     function validateCheckboxField(checkBoxValue,event){
-        if (checkBoxValue == false){
+        if (checkBoxValue === false){
             document.getElementById("opt-in-feedback").innerText = "Please agree to this."
+            valid = false;
             event.preventDefault()
         } else {
             document.getElementById("opt-in-feedback").innerText = "";
+            valid = true;
         }
     }
 
-// fetch api request to check for user numbers
+// fetch api request to check for current number of users
 async function checkUserNumber() {
+    try{
     const response = await fetch('php/checkUserNumber.php');
     if (!response.ok) {
         const message = `An error has occured: ${response.status}`;
-        throw new Error(message);
+        throw new Error(message); // error causes execution of catch block
     }
 
-    const number = await response.json();
-    return number;
-}
+    const data = await response.json()
+    const finalData = await processData(data)
+    console.log(finalData);
+    return finalData;
 
+    }catch(err) {
+        // there was an php error instead of the expected js object
+        if (err.message === "Unexpected token < in JSON at position 0" ) {
+            submitFeedback.innerText = "An error has occured";
+            submitFeedback.innerText = error.message;
+        } else{ // a different error occured
+            submitFeedback.innerText = error.message;
+        }
+        errorNote();
+    }
+
+}
+// get user number value out of the JS Object
+async function processData(response) {
+    return response[0]["COUNT(*)"];
+}
 
 function successNote() {
         submitFeedback.setAttribute("style","color: var(--color-grey-light-1); opacity: 0;");
@@ -440,7 +485,6 @@ function successNote() {
         setTimeout(function(){
             submitFeedback.classList.remove("fadeInOut");
         }, 5000);
-
 }
 
 function errorNote() {
@@ -459,9 +503,7 @@ function resetForm() {
         for (let i = 0; i < inputs.length; i++) {
             inputs[i].setAttribute("style","box-shadow:");
         }
-
 }
-
 
 
 
