@@ -1,0 +1,79 @@
+@use "../abstracts/index" as *;
+
+body {
+  color: var(--color-grey-light-1);
+  font-family: 'Roboto', sans-serif;
+  font-size: var(--default-font-size);
+
+}
+
+[class^="heading"] {
+  color: var(--color-grey-dark-1);
+  text-transform:uppercase;
+  letter-spacing: -1px;
+}
+
+.heading-primary {
+
+}
+
+.heading-secondary {
+
+}
+
+.heading-tertiary {
+
+}
+
+.paragraph {
+
+}
+
+.btn {
+  font-weight: 700;
+  text-transform:uppercase;
+}
+
+#popup-su__button-close{
+  --default-font-size: 3.5rem;
+  font-size: var(--default-font-size);
+
+}
+
+#sign-up-form input::placeholder{
+  color: var(--color-grey-light-1);
+}
+[id$="feedback"] {
+  color: var(--color-red);
+}
+
+select:invalid {
+  color:var(--color-grey-light-1);
+}
+
+.row-head, .column-head{
+  text-transform: capitalize;
+  font-weight: 700;
+  color: var(--color-grey-dark-1);
+  --default-font-size: 1.8rem;
+  font-size: var(--default-font-size);
+}
+
+.img-box figcaption {
+  color: var(--color-white);
+  --default-font-size: 1.8rem;
+  font-size: var(--default-font-size);
+  text-align: center;
+}
+
+.summary-text {
+  font-weight: 700;
+  color: var(--color-grey-dark-1);
+  --default-font-size: 1.8rem;
+  font-size: var(--default-font-size);
+}
+
+.user-table > span {
+  color: rgba(var(--color-black-rgb), .7);
+  font-size: clamp(1rem, 1rem + .3vw, var(--default-font-size) );
+}

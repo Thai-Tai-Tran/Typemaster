@@ -1,0 +1,44 @@
+@use "../abstracts/index" as *;
+
+.img-box {
+  position: relative;
+  flex: 1;
+  box-shadow: var(--box-shadow-smooth);
+  transition: 0.2s;
+  height: 15rem;
+  border: 1rem solid var(--color-grey-light-2);
+
+  &:hover {
+    transform: translateY(-3px);
+
+  }
+
+  &:active {
+    transform: translateY(-1px);
+
+  }
+
+  & figcaption {
+    cursor: default;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: var(--color-grey-dark-2);
+    padding: 1rem;
+    white-space: nowrap;
+    border-radius: 10px 10px 0 10px;
+
+    @include lg {
+      --default-font-size: 1.2rem;
+      white-space: inherit;
+    }
+
+}
+  & img {
+    height: 100%;
+    box-sizing: border-box;
+    object-fit: contain;
+  }
+}
+
+

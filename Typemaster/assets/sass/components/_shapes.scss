@@ -1,0 +1,31 @@
+@use "../abstracts/index" as *;
+
+[class^="box--rounded"] {
+  display: block;
+  background-color: var(--color-grey-light-2);
+  height: 28rem;
+  width: 100%;
+
+}
+
+.box--rounded-left{
+  border-radius: 15px 0 0 15px;
+}
+
+.box--rounded-right{
+  border-radius: 0 15px 15px 0;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+  transition: 200ms ease-in-out;
+  background-color: rgba(var(--color-black-rgb),.5);
+  pointer-events: none;
+
+  &--active {
+    opacity: 1;
+    pointer-events: all;
+  }
+}

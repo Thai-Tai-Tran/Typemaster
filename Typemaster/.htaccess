@@ -1,5 +1,6 @@
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^([^/]+)/$ $1.php
-
+RewriteRule ^([^/]+)/$ $1.entities
+#RewriteRule (.*) /index.entities/$1 [L]
+#RewriteRule ^([^/]*)/?$ index.entities?page=$1 [L,NC]

@@ -1,0 +1,36 @@
+@use "../abstracts/index" as *;
+
+/////////////////
+// Section Users (users.entities)
+
+
+.user-table {
+  background-color: rgba(var(--color-grey-dark-2-rgb), .1);
+  margin-inline: calc(10% + 1.4rem);
+  display: grid;
+  grid-template-columns: repeat(10, minmax(auto, auto));
+  border-top: 1px solid var(--color-black);
+  border-right: 1px solid var(--color-black);
+  //border-top: 1px solid var(--color-black)
+}
+
+.user-table__btn-container {
+  display:flex;
+  justify-content: space-around;
+  gap: 1rem;
+
+  &>* {
+    flex: .6 1 0;
+  }
+}
+
+.user-table span {
+  flex-wrap: wrap;
+  padding: 0.8rem 0.4rem;
+  border-left: 1px solid var(--color-black);
+  border-bottom: 1px solid var(--color-black);
+
+  &:not(.user-table__btn-container) {
+    word-break: break-word;
+  }
+}
