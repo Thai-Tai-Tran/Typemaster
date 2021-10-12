@@ -43,7 +43,7 @@ class DbHandler{
 
 
             // open container div for the table
-            echo '<div class="table">';
+            echo '<div class="rud-table">';
 
             // declare an array for saving all column heads/names
             $colHeads = [];
@@ -68,7 +68,7 @@ class DbHandler{
                     echo '<span data-row-id=' . $row["id"] . ' data-field-name='. $colHead .'>' . $row[$colHead] . '</span>';
                 }
                 // add edit/delete buttons with row ids at the end of each row
-                echo "<span class='table__btn-container'><button class='btn--blue rounded-sm edit-btn' data-row-id=" . $row['id'] .">Edit</button><button class='btn--orange rounded-sm del-btn' data-row-id=" . $row['id'] .">Delete</button></span>";
+                echo "<span class='rud-table__btn-container'><button class='btn--blue rounded-sm edit-btn' data-row-id=" . $row['id'] .">Edit</button><button class='btn--orange rounded-sm del-btn' data-row-id=" . $row['id'] .">Delete</button></span>";
             }
 
             // close container div for the table
