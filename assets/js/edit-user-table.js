@@ -18,7 +18,7 @@ function addEventListenerByClass(className, event, fn) {
 
 // toggle between Edit Btn functionality and Save Btn functionality
 // Edit Btn - highlight and make row entries editable
-// Save Btn - remove highlight and editable from row - send changes to entities file (which in turn makes changes
+// Save Btn - remove highlight and editable from row - send changes to classes file (which in turn makes changes
 // to the db)
 async function toggleEditBtn () {
     const button = this;
@@ -151,7 +151,7 @@ async function deleteUserHandler() {
 // Delete User
 async function deleteUser(id) {
     try {
-        // use fetch api to create a promise which sends a request to the deleteUser.entities file with the content of body
+        // use fetch api to create a promise which sends a request to the deleteUser.classes file with the content of body
         const response = await fetch("../entities/deleteUser.php", {
             method: "POST",
             body: JSON.stringify(id), // create JSON stdClassObject

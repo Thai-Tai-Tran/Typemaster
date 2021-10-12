@@ -1,7 +1,8 @@
 <?php
 // open connection
-require_once("dbConnection.php");
-$conn = connection();
+require_once("DbHandler.php");
+$conn = new DbHandler;
+$conn->openConn();
 
 // on btn submit
 if($_POST['btnSubmit']) {
@@ -23,8 +24,7 @@ if($_POST['btnSubmit']) {
     $rs = mysqli_query($conn, $sql);
 }
 
-    // close connection
-    $conn->close();
+
 
 
 

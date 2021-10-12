@@ -210,39 +210,6 @@ function closePopup() {
 
              })()
 
-         // userNumber1 = checkUserNumber().then();
-         //
-         // checkUserNumber().catch(error => {
-         //     error.message;
-         // });
-
-        // // check number of users after submission
-        //  checkUserNumber().then(number => {
-        //      userNumber2 = number[0]["COUNT(*)"];
-        //
-        //      // reset form when user was added
-        //      if(userNumber1<userNumber2) {
-        //          resetForm();
-        //          successNote();
-        //      // username was already taken because there is no error, but no user was added
-        //      }else if(error === false) {
-        //          submitFeedback.innerText = "The username has already been taken"
-        //          errorNote();
-        //      }
-        //  });
-        //  // error handling
-        //  checkUserNumber().catch(error => {
-        //      error.message;
-        //      if (error.message != null) {
-        //          if (error.message === "Unexpected token < in JSON at position 0" ) {
-        //              submitFeedback.innerText = "An error has occured";
-        //          } else{
-        //              submitFeedback.innerText = error.message;
-        //          }
-        //          errorNote();
-        //      }
-        //  });
-
     }
 
 // Fast Feedback
@@ -457,7 +424,7 @@ async function checkUserNumber() {
     return finalData;
 
     }catch(err) {
-        // there was an entities error instead of the expected js object
+        // there was an classes error instead of the expected js object
         if (err.message === "Unexpected token < in JSON at position 0" ) {
             submitFeedback.innerText = "An error has occured";
             submitFeedback.innerText = error.message;

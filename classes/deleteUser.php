@@ -1,7 +1,7 @@
 <?php
 
 // open connection
-require_once("dbConnection.php");
+require_once("DbHandler.php");
 $conn = connection();
 
 if(!$conn) {

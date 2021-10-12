@@ -60,7 +60,7 @@ if ( !(($content->gender == "male") || ($content->gender == "female") || ($conte
 $id = $content->id;
 
 // open connection
-require_once("dbConnection.php");
+require_once("DbHandler.php");
 $conn = connection();
 
 if(!$conn) {
