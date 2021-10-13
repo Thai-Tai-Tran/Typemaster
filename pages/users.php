@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/main.css">
     <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+    <script src="../assets/js/edit-user-table.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet">
@@ -29,8 +30,8 @@
     require_once("../classes/DbHandler.php");
     require_once("../classes/User.php");
     $conn = new User;
-    $conn->showAll('users');
-    $conn->checkUserNumber();
+    $conn->readEntries('users');
+    $conn->checkNumberOfEntries('users');
     ?>
 </div>
 
@@ -40,7 +41,5 @@
         </div>
     </footer>
 </div>
-
-<script src="../assets/js/edit-user-table.js"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@ class User extends DbHandler
 {
 
     // Add a new user to the users db
-    public function signUp()
+    public function createUser_OLD()
     {
         try {
             $statement =
@@ -40,64 +40,20 @@ class User extends DbHandler
             throw new Exception($e->getMessage());
         }
     }
-    public function checkUserNumber(){
-        try{
 
-            $statement = "SELECT COUNT(*) FROM users";
-            $result = $this->executeStatement( $statement );
+    public function validateUser($function) {
 
-            exit(json_encode($result));
+            try {
+                $valid = true;
+                // validate Function
 
-        }catch(Exception $e){
-//            throw new Exception($e->getMessage());
-        }
-    }
-
-
-
-    // Updates a user in users table
-    public function updateUsers(){
-        try{
-                // get Request from JS Promise - decode JS Object
-                // the JS Object contains key/value pairs for every column in the users table
-                $content = json_decode(file_get_contents("php://input"));
-
-                $keyPlaceholderPairs = [];
-                foreach ($content as $key => $val) {
-                    $keyPlaceholderPairs .= $key."=':".$key."', ";
+                if ($valid) {
+                    $this->$function('users');
+                } else{
+                    throw new Exception("Not valid");
                 }
-
-                $statement = "UPDATE users SET ".$keyPlaceholderPairs." WHERE id = "."':id'";
-
-                $parameters = [':id' => $content->id];
-                foreach ($content as $key => $val) {
-                    $parameters .= ":".$key." => '".$val."', ";
-                }
-
-                $this->executeStatement( $statement , $parameters );
-
-        }catch(Exception $e){
-            throw new Exception($e->getMessage());
+            } catch (Exception $e) {
+                throw new Exception($e->getMessage());
+            }
         }
-    }
-
-
-    // Delete a user in users table
-    public function deleteUser(){
-        try{
-
-            // sql command - delete entry in the users table -> the row with the specified id
-            $statement = "DELETE FROM users WHERE id = ':id'";
-            // get Request from JS Promise - decode JS Object
-            // the JS Object only contains the id
-            $parameters = [':id' => json_decode(file_get_contents("php://input"))];
-
-            $this->executeStatement( $statement , $parameters );
-
-        }catch(Exception $e){
-            throw new Exception($e->getMessage());
-        }
-    }
-
-
 }

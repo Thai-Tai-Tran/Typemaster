@@ -1,11 +1,15 @@
 // Edit Button Functionality
 let error = false;
 
-// add Click Event Listeners to all Edit Buttons
-addEventListenerByClass('.edit-btn', 'click', toggleEditBtn);
+
+document.addEventListener("DOMContentLoaded", function(event) {
+    // add Click Event Listeners to all Edit Buttons
+    addEventListenerByClass('.edit-btn', 'click', toggleEditBtn);
 
 // add Click Event Listeners to all Delete Buttons
-addEventListenerByClass('.del-btn', 'click', deleteUserHandler);
+    addEventListenerByClass('.del-btn', 'click', deleteEntryHandler);
+});
+
 
 function addEventListenerByClass(className, event, fn) {
     const list = document.querySelectorAll(className);
@@ -40,7 +44,7 @@ async function toggleEditBtn () {
             // start waiting indicator
             this.classList.add("grayed-out");
             // start fetch Request
-            await changeDbEntries(targetSpans,entryId)
+            await updateUser(targetSpans,entryId)
             // end waiting indicator
             button.classList.remove("grayed-out");
             // if there is no error -> toggle
@@ -72,9 +76,11 @@ function toggleRowEditable (e, targetSpans) {
 }
 
 // change DB entries on save
-async function changeDbEntries(targetSpans, entryId) {
+async function updateUser(targetSpans, entryId) {
     // start array for the body of the request
     let fields = {};
+    // add action key/value to identify in the backend
+    fields.action = "updateUser";
 
     // loop through every eligible row entry
     // "length -2" to exclude the 2 buttons at the end of the row with the same attribute
@@ -89,40 +95,14 @@ async function changeDbEntries(targetSpans, entryId) {
     }
     // add ID as last key/value pair
     fields.id = entryId;
+    await sendDataToFetchHandler(fields)
 
-    try {
-        // use fetch api to create a promise which sends a request to the updateUsers file with the content of body
-        const response = await fetch("../entities/updateUsers.php", {
-            method: "POST",
-            body: JSON.stringify(fields), // create JSON stdClassObject from array
-            // define content-type
-            headers: {
-                'Content-Type': 'application/text'
-            },
-        })
-        //response status code is not in the range of 200-299
-        if (!response.ok) {
-            const message = `An error has occured: ${response.status}`;
-            throw new Error(message); // error causes execution of catch block
-        } else{ // response status code is in the range of 200-299
-            const message = await response.text();
-            // there is text in the response -> validation or other error
-            if(message !== "") {
-                throw new Error(message);// error causes execution of catch block
-            }else { //there is no text in the response -> no errors
-                error=false;
-            }
-        }
-    } catch(err) {
-        error = true; // there was an error
-        alert(err.message);
-    }
 }
 
 ////////////////////////////
 // Delete Function
 
-async function deleteUserHandler() {
+async function deleteEntryHandler() {
     // get ID for the body of the request
     const entryId = this.getAttribute("data-row-id");
 
@@ -131,13 +111,13 @@ async function deleteUserHandler() {
         // start waiting indicator
         this.classList.add("grayed-out");
         // start fetch request
-        await deleteUser(entryId);
+        await deleteEntry(entryId);
         // end waiting indicator
         this.classList.remove("grayed-out");
         // if there is no error delete row on frontend
         if(!error) {
             const targetSpans = document.querySelectorAll("[data-row-id='" + entryId + "']");
-            const targetBtnContainer = document.querySelector(".user-table__btn-container [data-row-id='" + entryId + "']").parentElement;
+            const targetBtnContainer = document.querySelector(".rud-table__btn-container [data-row-id='" + entryId + "']").parentElement;
             targetBtnContainer.setAttribute("style", "display:none");
             for (let i = 0, length = targetSpans.length; i < length - 2; i++) {
                 targetSpans[i].setAttribute("style", "display:none");
@@ -149,17 +129,27 @@ async function deleteUserHandler() {
 }
 
 // Delete User
-async function deleteUser(id) {
+async function deleteEntry(id) {
+    // add action key/value to identify in the backend
+    let fields = {};
+    fields.action = "deleteEntry";
+    fields.id = id;
+    await sendDataToFetchHandler(fields)
+
+}
+
+async function sendDataToFetchHandler(fields) {
     try {
-        // use fetch api to create a promise which sends a request to the deleteUser.classes file with the content of body
-        const response = await fetch("../entities/deleteUser.php", {
+        // use fetch api to create a promise which sends a request to the updateUsers file with the content of body
+        const response = await fetch("../pages/fetch.php", {
             method: "POST",
-            body: JSON.stringify(id), // create JSON stdClassObject
+            body: JSON.stringify(fields), // create JSON stdClassObject from array
             // define content-type
             headers: {
                 'Content-Type': 'application/text'
             },
         })
+        //response status code is not in the range of 200-299
         if (!response.ok) {
             const message = `An error has occured: ${response.status}`;
             throw new Error(message); // error causes execution of catch block
@@ -174,6 +164,6 @@ async function deleteUser(id) {
         }
     } catch (err) {
         error = true; // there was an error
-        alert(err.message);
+        console.log(err.message);
     }
 }
