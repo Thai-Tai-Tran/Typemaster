@@ -5,54 +5,46 @@ $conn = new User;
 // Request Body = JSON -> transform to array
 $content = json_decode(file_get_contents("php://input"), true);
 
-if($content['action'] == 'createUser'){
-//    $conn->validateUser($conn->createEntry('users'));
-    $conn->createEntry('users');
-} elseif($content['action'] == 'updateUser') {
-//    $conn->validateUser($conn->updateEntry('users', $content));
-//    $conn->updateEntry('users');
 
+////////////// CREATE USER
+if($content['fetchType'] == 'createUser'){
+    //////// PREPARE DATA ARRAY
     // remove action key/value pair
     array_shift($content);
-    $parameters = array();
-    foreach ($content as $key => $val) {
-        if ($key === array_key_last($content)){
-            $parameters[] = ":".$key." => '".$val."' ";
-        }else {
-            $parameters[] = ":".$key." => '".$val."', ";
-        }
-    }
-
-//echo implode("", $parameters);
-
-// remove id from the array
+    // remove checkbox value
     array_pop($content);
+    // gather birthday inputs into a key value pair
+    $birthdate = $content['year'] . '-' . str_pad($content['month'], 2, '0', STR_PAD_LEFT) . '-' . str_pad($content['day'], 2, '0', STR_PAD_LEFT);
+    unset($content['year'],$content['month'],$content['day']);
+    $content["birthdate"] = $birthdate;
 
-    $keyPlaceholderPairs = array();
-    foreach($content as $key=>$value) {
-        if ($key === array_key_last($content)){
-            $keyPlaceholderPairs[] = $key."=':".$key."' ";
-        }else {
-            $keyPlaceholderPairs[] = $key."=':".$key."', ";
-        }
+    //////// EXECUTE FUNCTION
+    if($conn->validateUser($content)){
+        $conn->createEntry('users',$content);
     }
 
-    $statement = "UPDATE users SET ".implode("", $keyPlaceholderPairs)." WHERE id = "."':id'";
-//echo implode("", $keyPlaceholderPairs);
-    $stmt = $conn->openConn()->prepare($statement);
-    print_r($stmt);
-    echo "<br />";
-    print_r($parameters);
-
-} elseif($content['action'] == 'deleteEntry') {
+////////////// UPDATE USER
+} elseif($content['fetchType'] == 'updateUser') {
+    //////// PREPARE DATA ARRAY
     // remove action key/value pair
     array_shift($content);
+
+    //////// EXECUTE FUNCTION
+
+    if($conn->validateUser($content)){
+        $conn->updateEntry('users',$content);
+    }
+
+////////////// DELETE ENTRY
+} elseif($content['fetchType'] == 'deleteEntry') {
+    //////// PREPARE DATA ARRAY
+    // remove action key/value pair
+    array_shift($content);
+
+    //////// EXECUTE FUNCTION
     $conn->deleteEntry('users',$content);
 
 }
-
-
-
 
 
 

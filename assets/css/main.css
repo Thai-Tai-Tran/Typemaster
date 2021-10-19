@@ -361,7 +361,7 @@ select:invalid {
   grid-area: email-feedback;
 }
 
-#email {
+#email-address {
   grid-area: email;
 }
 
@@ -759,7 +759,7 @@ input::-webkit-search-cancel-button {
   border-left: 1px solid var(--color-black);
   border-bottom: 1px solid var(--color-black);
 }
-.rud-table span:not(.user-table__btn-container) {
+.rud-table span:not(.rud-table__btn-container) {
   word-break: break-word;
 }
 

@@ -79,8 +79,8 @@ function toggleRowEditable (e, targetSpans) {
 async function updateUser(targetSpans, entryId) {
     // start array for the body of the request
     let fields = {};
-    // add action key/value to identify in the backend
-    fields.action = "updateUser";
+    // add fetchType key/value to identify in the backend
+    fields.fetchType = "updateUser";
 
     // loop through every eligible row entry
     // "length -2" to exclude the 2 buttons at the end of the row with the same attribute
@@ -130,9 +130,9 @@ async function deleteEntryHandler() {
 
 // Delete User
 async function deleteEntry(id) {
-    // add action key/value to identify in the backend
+    // add fetchType key/value to identify in the backend
     let fields = {};
-    fields.action = "deleteEntry";
+    fields.fetchType = "deleteEntry";
     fields.id = id;
     await sendDataToFetchHandler(fields)
 
@@ -150,20 +150,23 @@ async function sendDataToFetchHandler(fields) {
             },
         })
         //response status code is not in the range of 200-299
-        if (!response.ok) {
+        if (!response) {
             const message = `An error has occured: ${response.status}`;
+            console.log(response.text());
             throw new Error(message); // error causes execution of catch block
         } else { // response status code is in the range of 200-299
             const message = await response.text();
             // there is text in the response -> validation or other error
             if (message !== "") {
-                throw new Error(message);// error causes execution of catch block
+                alert(message);
+                error = true;
             } else { //there is no text in the response -> no errors
                 error = false;
             }
         }
     } catch (err) {
         error = true; // there was an error
+        alert("An error has occured");
         console.log(err.message);
     }
 }

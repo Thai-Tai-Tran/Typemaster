@@ -50,7 +50,7 @@
                             Pre-Order Now
                         </button>
                         <div class="section-about__cta__area__info">
-                            Release On 5/27
+                            <br />Release On 5/27
                         </div>
                     </div>
                 </div>
@@ -204,7 +204,9 @@
         <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
         <div class="popup rounded popup" id="popup-su">
 
-                 <form id="sign-up-form" action="../entities/signUpForm.php" target="dummyframe" method="post">
+                 <form id="sign-up-form" action="fetch.php" target="dummyframe">
+                         <input type="hidden" id="fetchType" name="fetchType" value="createUser">
+
                          <h2 id="sign-up-form__header__heading" class="heading-secondary">Sign Up</h2>
                          <button id="popup-su__button-close">&times;</button>
 
@@ -216,7 +218,7 @@
                          <input id="last-name" name="last_name" type="text" placeholder="Last Name">
 
                          <span data-type="feedback" id="email-feedback"></span>
-                         <input id="email" name="email" type="email" placeholder="Email Address">
+                         <input id="email-address" name="email_address" type="email" placeholder="Email Address">
 
                         <span data-type="feedback" id="tel-number-feedback"></span>
                         <input id="tel-number" name="tel_number" type="tel" placeholder="Telephone Number">

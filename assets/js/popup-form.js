@@ -147,70 +147,100 @@ function closePopup() {
 
 // Form Validation
 
-    const form = document.getElementById("sign-up-form");
-    const userName = document.getElementById("username");
-    const firstName = document.getElementById("first-name");
-    const lastName = document.getElementById("last-name");
-    const emailAddress = document.getElementById("email");
-    const telNumber = document.getElementById("tel-number");
-    const password = document.getElementById("password");
-    const checkbox = document.getElementById("checkbox");
-    const btnSubmit = document.getElementById("btnSubmit");
-    const submitFeedback = document.querySelector(".submit-feedback");
+const form = document.getElementById("sign-up-form");
+const userName = document.getElementById("username");
+const firstName = document.getElementById("first-name");
+const lastName = document.getElementById("last-name");
+const emailAddress = document.getElementById("email-address");
+const telNumber = document.getElementById("tel-number");
+const password = document.getElementById("password");
+const checkbox = document.getElementById("checkbox");
+const btnSubmit = document.getElementById("btnSubmit");
+const submitFeedback = document.querySelector(".submit-feedback");
 
-    let valid = false;
-    let error = false;
+let valid = false;
+let error = false;
 
-     form.addEventListener('submit', formValidateFunction);
+enableFastFeedback(form);
 
-     enableFastFeedback(form);
+// Form submit via FETCH
 
-     function formValidateFunction(event){
+form.addEventListener('submit', handleFormSubmit);
+async function handleFormSubmit(event) {
 
-         // Form status: Processing
-             btnSubmit.value = "Processing...";
-             btnSubmit.classList.add("grayed-out");
+    const form = event.currentTarget;
+    const url = form.action;
 
-         // variables to check number of users in db
-             let userNumber1;
-             let userNumber2;
+    event.preventDefault();
 
-         // validate input
-         validateUserNameField(userName.value, event)
-         validateFirstNameField(firstName.value, event)
-         validateLastNameField(lastName.value, event)
-         validateEmailAddressField(emailAddress.value, event)
-         validateTelNumberField(telNumber.value, event)
-         validatePasswordField(password.value, event)
-         validateCheckboxField(checkbox.checked, event)
+    // Form status: Processing
+    btnSubmit.value = "Processing...";
+    btnSubmit.classList.add("grayed-out");
 
-         // if validation fails reset in process indicator and stop the rest of the function
-         if(!valid) {
-             btnSubmit.value = "Register";
-             btnSubmit.classList.remove("grayed-out");
-             return;
-         }
+    // validate input
+    validateUserNameField(userName.value, event)
+    validateFirstNameField(firstName.value, event)
+    validateLastNameField(lastName.value, event)
+    validateEmailAddressField(emailAddress.value, event)
+    validateTelNumberField(telNumber.value, event)
+    validatePasswordField(password.value, event)
+    validateCheckboxField(checkbox.checked, event)
 
-
-         ( async() => { //IIFE (Immediately Invoked Function Expression)
-                 //check number of users before submission
-                 userNumber1 = await checkUserNumber();
-                //check number of users after submission
-                 userNumber2 = await checkUserNumber();
-
-                 // reset form when user was added
-                 if(userNumber1<userNumber2) {
-                     resetForm();
-                     successNote();
-                 // no user was added + username was already taken, because there is no error or the error was thrown just before
-                 }else if(error === false || submitFeedback.innerText === "The username has already been taken") {
-                     submitFeedback.innerText = "The username has already been taken"
-                     errorNote();
-                 }
-
-             })()
-
+    // if validation fails reset in process indicator and stop the rest of the function
+    if(!valid) {
+        btnSubmit.value = "Register";
+        btnSubmit.classList.remove("grayed-out");
+        return;
     }
+
+    try {
+        const formData = new FormData(form);
+        const responseData = await postFormDataAsJson({ url, formData });
+
+
+        if (!responseData) {
+            successNote();
+            resetForm();
+        } else{
+            errorNote();
+            console.log(responseData);
+            throw new Error(); // error causes execution of catch block
+        }
+    } catch (err) {
+        errorNote();
+        submitFeedback.innerText = "An error has occured!";
+        console.error(err);
+    }
+}
+
+// Helper function for POSTing data as JSON with fetch.
+// Object - options
+// string - options.url - URL to POST data to
+// FormData - options.formData - `FormData` instance
+// return {Object} - Response body from URL that was POSTed to
+
+async function postFormDataAsJson({ url, formData }) {
+    const rawFormData = Object.fromEntries(formData.entries());
+    const formDataJsonString = JSON.stringify(rawFormData);
+
+    const fetchOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        },
+        body: formDataJsonString,
+    };
+
+    const response = await fetch(url, fetchOptions);
+
+    if (!response.ok) {
+        errorNote();
+        const errorMessage = await response.text();
+        throw new Error(errorMessage);
+    }
+    return response.text();
+}
 
 // Fast Feedback
 // toggle highlight based on validity on blur
@@ -292,152 +322,121 @@ function closePopup() {
                 this.setAttribute("style","box-shadow: var(--box-shadow-green); border: 1px solid var(--color-green);");
             }
         });
-
     }
 
  // isValid Functions
 
-    function isValidUserName(name){
-        return name.length >= 2;
-    }
+function isValidUserName(name){
+    return name.length >= 2;
+}
 
-    function isValidName(name){
-        return name.length >= 2;
-    }
+function isValidName(name){
+    return name.length >= 2;
+}
 
-    function isValidEmail(emailValue) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)
-
-    }
-
-    function isValidNumber(telNumberValue){
-        let phoneno = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
-        if(telNumberValue.match(phoneno))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    function isValidPassword(passwordValue){
-        // test for pw length and if it contains a number
-        return passwordValue.length >= 7 && /.*[0-9].*/.test(passwordValue);
-
-    }
-
-    // validate functions
-    // fill feedback text and prevent submit, on invalid input
-    function validateUserNameField(userNameValue, event){
-
-        if(!isValidUserName(userNameValue)){
-            document.getElementById("username-feedback").innerText = "Please enter at least two characters"
-            valid = false;
-            event.preventDefault();
-        } else {
-            document.getElementById("username-feedback").innerText= "";
-            valid = true;
-        }
-    }
-
-    function validateFirstNameField(firstNameValue, event){
-
-        if(!isValidName(firstNameValue)){
-            document.getElementById("name-feedback").innerText = "Please enter at least two characters"
-            valid = false;
-            event.preventDefault();
-        } else {
-            document.getElementById("name-feedback").innerText= "";
-            valid = true;
-        }
-    }
-
-    function validateLastNameField(lastNameValue, event){
-
-        if(!isValidName(lastNameValue)){
-            document.getElementById("name-feedback").innerText = "Please enter at least two characters"
-            valid = false;
-            event.preventDefault();
-        } else {
-            document.getElementById("name-feedback").innerText= "";
-            valid = true;
-        }
-    }
-
-    function validateEmailAddressField(emailValue, event) {
-        if (!isValidEmail(emailValue)) {
-            document.getElementById("email-feedback").innerText = "Please enter a valid Email Address."
-            valid = false;
-            event.preventDefault();
-        } else {
-            document.getElementById("email-feedback").innerText = "";
-            valid = true;
-        }
-    }
-
-    function validateTelNumberField(telNumberValue, event) {
-        if (!isValidNumber(telNumberValue)) {
-            document.getElementById("tel-number-feedback").innerText = "Please enter a valid Telephone Number."
-            valid = false;
-            event.preventDefault();
-        } else {
-            document.getElementById("tel-number-feedback").innerText = "";
-            valid = true;
-        }
-    }
-
-    function validatePasswordField(passwordValue, event){
-        if(!isValidPassword(passwordValue)){
-            document.getElementById("password-feedback").innerText = "Please enter a password with at least 8 characters.";
-            valid = false;
-            event.preventDefault();
-        } else {
-            document.getElementById("password-feedback").innerText = "";
-            valid = true;
-        }
-    }
-
-    function validateCheckboxField(checkBoxValue,event){
-        if (checkBoxValue === false){
-            document.getElementById("opt-in-feedback").innerText = "Please agree to this."
-            valid = false;
-            event.preventDefault()
-        } else {
-            document.getElementById("opt-in-feedback").innerText = "";
-            valid = true;
-        }
-    }
-
-// fetch api request to check for current number of users
-async function checkUserNumber() {
-    try{
-    const response = await fetch('../entities/checkUserNumber.php');
-    if (!response.ok) {
-        const message = `An error has occured: ${response.status}`;
-        throw new Error(message); // error causes execution of catch block
-    }
-
-    const data = await response.json()
-    const finalData = await processData(data)
-    return finalData;
-
-    }catch(err) {
-        // there was an classes error instead of the expected js object
-        if (err.message === "Unexpected token < in JSON at position 0" ) {
-            submitFeedback.innerText = "An error has occured";
-            submitFeedback.innerText = error.message;
-        } else{ // a different error occured
-            submitFeedback.innerText = error.message;
-        }
-        errorNote();
-    }
+function isValidEmail(emailValue) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)
 
 }
-// get user number value out of the JS Object
-async function processData(response) {
-    return response[0]["COUNT(*)"];
+
+function isValidNumber(telNumberValue){
+    let phoneno = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+    if(telNumberValue.match(phoneno))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function isValidPassword(passwordValue){
+    // test for pw length and if it contains a number
+    return passwordValue.length >= 7 && /.*[0-9].*/.test(passwordValue);
+
+}
+
+// validate functions
+// fill feedback text and prevent submit, on invalid input
+function validateUserNameField(userNameValue, event){
+
+    if(!isValidUserName(userNameValue)){
+        document.getElementById("username-feedback").innerText = "Please enter at least two characters"
+        valid = false;
+        event.preventDefault();
+    } else {
+        document.getElementById("username-feedback").innerText= "";
+        valid = true;
+    }
+}
+
+function validateFirstNameField(firstNameValue, event){
+
+    if(!isValidName(firstNameValue)){
+        document.getElementById("name-feedback").innerText = "Please enter at least two characters"
+        valid = false;
+        event.preventDefault();
+    } else {
+        document.getElementById("name-feedback").innerText= "";
+        valid = true;
+    }
+}
+
+function validateLastNameField(lastNameValue, event){
+
+    if(!isValidName(lastNameValue)){
+        document.getElementById("name-feedback").innerText = "Please enter at least two characters"
+        valid = false;
+        event.preventDefault();
+    } else {
+        document.getElementById("name-feedback").innerText= "";
+        valid = true;
+    }
+}
+
+function validateEmailAddressField(emailValue, event) {
+    if (!isValidEmail(emailValue)) {
+        document.getElementById("email-feedback").innerText = "Please enter a valid Email Address."
+        valid = false;
+        event.preventDefault();
+    } else {
+        document.getElementById("email-feedback").innerText = "";
+        valid = true;
+    }
+}
+
+function validateTelNumberField(telNumberValue, event) {
+    if (!isValidNumber(telNumberValue)) {
+        document.getElementById("tel-number-feedback").innerText = "Please enter a valid Telephone Number."
+        valid = false;
+        event.preventDefault();
+    } else {
+        document.getElementById("tel-number-feedback").innerText = "";
+        valid = true;
+    }
+}
+
+function validatePasswordField(passwordValue, event){
+    if(!isValidPassword(passwordValue)){
+        document.getElementById("password-feedback").innerText = "Please enter a password with at least 8 characters.";
+        valid = false;
+        event.preventDefault();
+    } else {
+        document.getElementById("password-feedback").innerText = "";
+        valid = true;
+    }
+}
+
+function validateCheckboxField(checkBoxValue,event){
+    if (checkBoxValue === false){
+        document.getElementById("opt-in-feedback").innerText = "Please agree to this."
+        valid = false;
+        event.preventDefault()
+    } else {
+        document.getElementById("opt-in-feedback").innerText = "";
+        valid = true;
+    }
 }
 
 function successNote() {
@@ -470,9 +469,3 @@ function resetForm() {
             inputs[i].setAttribute("style","box-shadow:");
         }
 }
-
-
-
-
-
-

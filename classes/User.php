@@ -3,57 +3,68 @@
 class User extends DbHandler
 {
 
-    // Add a new user to the users db
-    public function createUser_OLD()
-    {
-        try {
-            $statement =
-                "INSERT INTO users (`username`,`first_name`,`last_name`,`email_address`,`tel_number`,`password`,`birthdate`,`gender`);
-                VALUES(`:username`,`:first_name`,`:last_name`,`:email_address`,`:tel_number`,`:password`,`:birthdate`,`:gender`)";
-
-            // map values of input fields to variables
-            $username = $_POST['username'];
-            $first_name = $_POST['first_name'];
-            $last_name = $_POST['last_name'];
-            $email_address = $_POST['email'];
-            $tel_number = $_POST['tel_number'];
-            $password = $_POST['password'];
-            $birthdate = $_POST['year'] . '-' . $_POST['month'] . '-' . $_POST['day'];
-            $gender = $_POST['gender'];
-
-            // map input variables to statement placeholders
-            $parameters = [
-                `:username` => $username,
-                `:first_name` => $first_name,
-                `:last_name` => $last_name,
-                `:email_address` => $email_address,
-                `:tel_number` => $tel_number,
-                `:password` => $password,
-                `:birthdate` => $birthdate,
-                `:gender` => $gender
-            ];
-
-            $this->executeStatement($statement, $parameters);
-            return $this->openConn()->lastInsertId();
-
-        } catch (Exception $e) {
-            throw new Exception($e->getMessage());
-        }
-    }
-
-    public function validateUser($function) {
+    public function validateUser($content) {
 
             try {
                 $valid = true;
-                // validate Function
+                $validationErrors = [];
+
+                ///////////////////// validate functions
+                // validate username
+                if(!(strlen($content['username']) >1)) {
+                    echo $content['username'];
+                    $valid = false;
+                    $validationErrors[] = "Please enter at least two characters for the username.";
+                }
+                // validate first_name
+                if(!(strlen($content['first_name']) >1)) {
+                    $valid = false;
+                    $validationErrors[] = "Please enter at least two characters for the first name.";
+                }
+                // validate last_name
+                if(!(strlen($content['last_name']) >1)) {
+                    $valid = false;
+                    $validationErrors[] = "Please enter at least two characters for the last name.";
+                }
+                // validateEmailAddress
+                if(!(preg_match("/^[^\s@]+@[^\s@]+\.[^\s@]+$/",$content['email_address']))) {
+                    $valid = false;
+                    $validationErrors[] = "Please enter a valid Email Address.";
+
+                }
+                // validateTelNumber
+                if(!(preg_match("/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im",$content['tel_number']))) {
+                    $valid = false;
+                    $validationErrors[] =  "Please enter a valid Telephone Number.";
+
+                }
+                // validate password
+                if (!(strlen($content['password']) > 7) && !(preg_match("/.*[0-9].*/",$content['password']))) {
+                    $valid = false;
+                    $validationErrors[] = "Please enter a password with at least 8 characters.";
+
+                }
+                // validate Birthdate
+                if (!(preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/",$content['birthdate']))) {
+                    $valid = false;
+                    $validationErrors[] = "Please enter a valid Birthdate.";
+
+                }
+                // validate Gender
+                if ( !(($content['gender'] == "male") || ($content['gender'] == "female") || ($content['gender'] == "diverse")) ){
+                    $valid = false;
+                    $validationErrors[] = "Please enter male, female or diverse as the gender";
+
+                }
 
                 if ($valid) {
-                    $this->$function('users');
+                    return true;
                 } else{
-                    throw new Exception("Not valid");
+                    echo implode("\r\n",$validationErrors);
+                    return false;
                 }
             } catch (Exception $e) {
-                throw new Exception($e->getMessage());
+//                echo new Exception($e->getMessage());
             }
         }
 }

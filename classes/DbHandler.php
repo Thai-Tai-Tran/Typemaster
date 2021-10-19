@@ -8,7 +8,7 @@ class DbHandler{
         // $this->openConn();
     }
 
-    public function openConn(){
+    public function openConn() {
         $servername = "localhost";
         $userName = "root";
         $password = "";
@@ -24,66 +24,48 @@ class DbHandler{
             $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
             return $pdo;
 
-        }catch(Exception $e){
+        }catch(Exception $e) {
             echo Exception($e->getMessage());
         }
-
     }
 
-    public function createEntry($table)
+    public function createEntry($table, $content)
     {
         try {
 
-            $keys = [];
-            $placeholders = [];
-            foreach ($_POST as $key) {
-                $keys .= "'".$key."', ";
-                $placeholders .= "':".$key."', ";
+            $keyNames = array();
+            $placeholders = array();
+            foreach($content as $key=>$value) {
+                if ($key === array_key_last($content)){
+                    $keyNames [] = "".$key."";
+                    $placeholders [] = ":".$key;
+                }else {
+                    $keyNames [] = "".$key.", ";
+                    $placeholders [] = ":".$key.", ";
+                }
             }
 
-            $parameters = [];
-            foreach ($_POST as $key => $val) {
-                $parameters .= ":".$key." => '".$val."', ";
+            $parameters = array();
+            foreach ($content as $key => $val) {
+                $parameters[":".$key] = $val;
             }
-
+            
             $statement =
-                "INSERT INTO ".$table." (".$keys.")
-                VALUES(".$placeholders.")";
+                "INSERT INTO ".$table."(".implode("", $keyNames).")
+                VALUES(".implode("", $placeholders).")";
 
-            // map values of input fields to variables
-            $username = $_POST['username'];
-            $first_name = $_POST['first_name'];
-            $last_name = $_POST['last_name'];
-            $email_address = $_POST['email'];
-            $tel_number = $_POST['tel_number'];
-            $password = $_POST['password'];
-            $birthdate = $_POST['year'] . '-' . $_POST['month'] . '-' . $_POST['day'];
-            $gender = $_POST['gender'];
-
-            // map input variables to statement placeholders
-            $parameters = [
-                `:username` => $username,
-                `:first_name` => $first_name,
-                `:last_name` => $last_name,
-                `:email_address` => $email_address,
-                `:tel_number` => $tel_number,
-                `:password` => $password,
-                `:birthdate` => $birthdate,
-                `:gender` => $gender
-            ];
 
             $this->executeStatement($statement, $parameters);
             return $this->openConn()->lastInsertId();
 
         } catch (Exception $e) {
-            throw new Exception($e->getMessage());
+            echo new Exception($e->getMessage());
         }
     }
 
-
     // Show all entries + column heads + edit and delete button from a table
-    public function readEntries($table){
-        try{
+    public function readEntries($table) {
+        try {
 
             // get results from first row (column heads)
             $statement = "SELECT * FROM ".$table." LIMIT 0";
@@ -112,7 +94,7 @@ class DbHandler{
             echo '<span class="column-head">Edit</span>';
 
             // loop through every row of the rest of the table
-            foreach($resultRest as $row){
+            foreach($resultRest as $row) {
                 // loop through every column for each row
                 foreach ($colHeads as $colHead) {
                     // add column entries for every row to table - add row id and the column name to each item
@@ -125,74 +107,68 @@ class DbHandler{
             // close container div for the table
             echo "</div>";
 
-        }catch(Exception $e){
+        }catch(Exception $e) {
 //            throw new Exception($e->getMessage());
 
         }
     }
 
     // Updates an entry in a table
-    public function updateEntry($table, $content){
+    public function updateEntry($table, $content) {
         try{
 
             $parameters = array();
             foreach ($content as $key => $val) {
-                if ($key === array_key_last($content)){
-                    $parameters[] = ":".$key." => '".$val."' ";
-                }else {
-                    $parameters[] = ":".$key." => '".$val."', ";
-                }
+                    $parameters[":".$key] = $val;
             }
 
-// remove id from the array
+            // remove id from the array
             array_pop($content);
-
             $keyPlaceholderPairs = array();
             foreach($content as $key=>$value) {
                 if ($key === array_key_last($content)){
-                    $keyPlaceholderPairs[] = $key."=':".$key."' ";
+                    $keyPlaceholderPairs[] = $key." = :".$key." ";
                 }else {
-                    $keyPlaceholderPairs[] = $key."=':".$key."', ";
+                    $keyPlaceholderPairs[] = $key." = :".$key.", ";
                 }
             }
 
-            $statement = "UPDATE ".$table." SET ".implode("", $keyPlaceholderPairs)." WHERE id = "."':id'";
-
+            $statement = "UPDATE ".$table." SET ".implode("", $keyPlaceholderPairs)."WHERE id = :id";
             $this->executeStatement( $statement , $parameters );
 
-        }catch(Exception $e){
+        }catch(Exception $e) {
             echo new Exception($e->getMessage());
 
         }
     }
 
     // Delete an entry in a table
-    public function deleteEntry($table,$content){
-        try{
+    public function deleteEntry($table,$content) {
+        try {
 
             // sql command - delete entry in the users table -> the row with the specified id
-            $statement = "DELETE FROM ".$table." WHERE id = ':id'";
+            $statement = "DELETE FROM ".$table." WHERE id = :id";
             // get Request from JS Promise - decode JS Object
             // the JS Object only contains the id
             $parameters = [':id' => $content['id']];
 
             $this->executeStatement( $statement , $parameters );
 
-        }catch(Exception $e){
+        }catch(Exception $e) {
             echo new Exception($e->getMessage());
         }
     }
 
     // Check the number of entries in a table
-    public function checkNumberOfEntries($table){
-        try{
+    public function checkNumberOfEntries($table) {
+        try {
 
             $statement = "SELECT COUNT(*) FROM ".$table;
             $result = $this->executeStatement( $statement );
 
             exit(json_encode($result));
 
-        }catch(Exception $e){
+        }catch(Exception $e) {
 //            throw new Exception($e->getMessage());
         }
     }
@@ -206,8 +182,8 @@ class DbHandler{
             $stmt->execute($parameters);
             return $stmt;
 
-        } catch (Exception $e) {
-            throw new Exception($e->getMessage());
+        }catch (Exception $e) {
+//            throw new Exception($e->getMessage());
         }
     }
 
